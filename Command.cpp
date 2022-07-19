@@ -6,11 +6,9 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 18:12:43 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/19 19:02:03 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "Command.hpp"
 
@@ -59,6 +57,30 @@ bool	Command::isSpecial(char c) const
 
 void	Command::setIP(std::string const & val) { IP = val;}
 
+std::vector<std::string>	Command::split(std::string const & s, std::string const & seperator)
+{
+	 	std::vector<std::string> output;
+ 		std::string::size_type prev_pos = 0, pos = 0;
+ 		while((pos = s.find(seperator, pos)) != std::string::npos)
+ 		{
+	 		if (s[prev_pos] == ':' && prev_pos != 0)
+ 			{
+	 			std::string substring( s.substr(prev_pos) );
+ 				output.push_back(substring);
+ 				return (output);
+ 			}
+ 			std::string substring( s.substr(prev_pos, pos-prev_pos) );
+ 			if (!substring.empty())
+ 				output.push_back(substring);
+ 			pos += seperator.length();
+ 			prev_pos = pos;
+ 		}
+ 		std::string substring( s.substr(prev_pos, pos-prev_pos) );
+ 		if (!substring.empty())
+	 		output.push_back(substring);
+	 return output;
+}
+
 void	Command::parsCmd(Client & client)
 {
 	(void)clients;
@@ -79,12 +101,13 @@ void	Command::parsCmd(Client & client)
 				return ;
 			cmds.erase(cmds.begin());
 		}
+		std::string	tmp(cmds[0]);
 		std::transform(cmds[0].begin(), cmds[0].end(),cmds[0].begin(), toupper);
 		iter = cmdMap.find(cmds[0]);
 		if (iter != cmdMap.end())
 			CALL_MEMBER_FN(*this, iter->second) (cmds, client);
 		else if (client.getRegistered())
-			sendMsg(client, "421", cmds[0], ERR_UNKNOWNCOMMAND);
+			sendMsg(client, "421", tmp, ERR_UNKNOWNCOMMAND);
 	}
 }
 
@@ -100,92 +123,4 @@ void	Command::registerClient(Client & client)
 		client.setRegistered(true);
 		sendMsg(client, "001", "", RPL_WELCOME); 
 	}
-}
-
-void	Command::pass(std::vector<std::string> cmds, Client & client)
-{
-	if (cmds.size() == 1)
-	{
-		sendMsg(client, "431", "", ERR_NONICKNAMEGIVEN);
-		return ;
-	}
-	if (client.getRegistered())
-	{
-		sendMsg(client, "462", "", ERR_ALREADYREGISTRED);
-		return;
-	}
-	client.setPass(cmds[1]);
-}
-
-void	Command::nick(std::vector<std::string> cmds, Client & client)
-{
-	(void)client;
-	if (cmds.size() == 1)
-	{
-		sendMsg(client, "431", "", ERR_NONICKNAMEGIVEN);
-		return ;
-	}
-	if (cmds[1].length() > 8)
-		cmds[1].resize(9);
-	std::list<Client>::iterator	it = clients.begin();
-	for(; it != clients.end(); it++)
-		if (cmds[1] == it->getNick() && &(*it) != &client)
-		{
-			sendMsg(client, "433", cmds[1], ERR_NICKNAMEINUSE);
-			return ;
-		}
-	if ((!isalpha(cmds[1][0]) && !isSpecial(cmds[1][0])))
-	{
-		sendMsg(client, "432", cmds[1], ERR_ERRONEUSNICKNAME);
-		return;
-	}
-	for (size_t i = 1; i < cmds[1].length(); i++)
-	{
-		if (!isalpha(cmds[1][i]) && !isSpecial(cmds[1][i]) && !isdigit(cmds[1][i]))
-		{
-			sendMsg(client, "432", cmds[1], ERR_ERRONEUSNICKNAME);
-			return;
-		}
-	}
-	if (client.getNick() != cmds[1])
-	{
-		if (client.getRegistered())
-			sendConfirm(client, cmds[0], cmds[1]);
-		client.setNick(cmds[1]);
-		if (!client.getRegistered())
-		{
-			client.setNicked(true);
-			registerClient(client);
-		}
-	}
-}
-
-void	Command::user(std::vector<std::string> cmds, Client & client)
-{
-	if (client.getRegistered())
-	{
-		sendMsg(client, "462", "", ERR_ALREADYREGISTRED);
-		return;
-	}
-	if (cmds.size() <= 4 || cmds[4] == ":")
-	{
-		sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
-		return;
-	}
-	client.setUser(cmds[1]);
-	client.setMode(cmds[2]);
-	client.setUnused(cmds[3]);
-	if (cmds[4][0] == ':')
-		cmds[4].erase(0, 1);
-	client.setRealname(cmds[4]);
-	client.setUsered(true);
-	registerClient(client);
-}
-
-void	Command::quit(std::vector<std::string> cmds, Client & client)
-{
-	if (client.getRegistered())
-		sendConfirm(client, cmds[0], "Client Quit");
-	sendError(client,"Closing Link", client.getIP() + " (Client Quit)");
-	client.setbeDeleted(true);
 }

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 18:17:45 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/19 19:03:22 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # include <algorithm>
 # include <string>
 # include <map>
+# include <vector>
 # include <sys/socket.h>
 
 # include "Client.hpp"
-# include "utile.hpp"
 # include "define.hpp"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
@@ -43,6 +43,8 @@ class	Command
 			bool	isSpecial(char c) const;
 
 			void	setIP(std::string const & val);
+
+			std::vector<std::string>	split(std::string const & s, std::string const & seperator);
 
 			void	parsCmd(Client & client);
 
