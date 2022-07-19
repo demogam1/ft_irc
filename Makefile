@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asebrech <asebrech@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/13 09:23:23 by asebrech         ###   ########.fr        #
+#    Updated: 2022/07/19 18:14:55 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRC =	main.cpp \
 		Server.cpp \
 		Client.cpp \
 		Command.cpp \
-		utile.cpp
+		utile.cpp \
+		oper.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

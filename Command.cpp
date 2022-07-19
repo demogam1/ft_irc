@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 16:15:29 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:12:43 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("USER")] = &Command::user; 
 	cmdMap[std::string("PASS")] = &Command::pass; 
 	cmdMap[std::string("QUIT")] = &Command::quit;
+	cmdMap[std::string("OPER")] = &Command::oper;
 }
 
 Command::~Command() {}

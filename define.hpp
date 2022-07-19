@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 16:17:31 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:14:06 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define CLIENT client.getNick() + "!" + client.getUser() + "@" + client.getIP()	
 
 # define RPL_WELCOME ":Welcome to the ft_irc Internet Relay Network " + CLIENT
+# define RPL_YOUREOPER ":You are now an IRC operator"
 
 # define ERR_UNKNOWNCOMMAND ":Unknown command"
 # define ERR_NONICKNAMEGIVEN ":No nickname given"
@@ -24,5 +25,6 @@
 # define ERR_NEEDMOREPARAMS ":Not enough parameters"
 # define ERR_ALREADYREGISTRED ":Unauthorized command (already registered)"
 # define ERR_PASSWDMISMATCH ":Password incorrect"
+# define ERR_NOOPERHOST ":No O-lines for your host"
 
 #endif

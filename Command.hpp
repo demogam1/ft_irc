@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 15:57:45 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:17:45 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ class	Command
 
 			void	quit(std::vector<std::string> cmds, Client & client);
 
-	private :
+			void	oper(std::vector<std::string> cmds, Client & client);
 
+	private :
 			std::string	password;
 			std::list<Client> & clients;
 			std::string	IP;
