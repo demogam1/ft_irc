@@ -1,0 +1,130 @@
+<< CAP LS
+<< NICK asebrech
+<< USER asebrech asebrech 127.0.0.1 :Alois Sebrechts
+>> :10.12.10.1 1 asebrech :Welcome to the ft_irc Internet Relay Network asebrech!asebrech@127.0.0.1
+<< CAP LS
+<< NICK asebrech
+<< USER asebrech asebrech 127.0.0.1 :Alois Sebrechts
+>> :10.12.10.1 1 asebrech :Welcome to the ft_irc Internet Relay Network asebrech!asebrech@127.0.0.1
+<< CAP LS
+<< NICK asebrech
+<< USER asebrech asebrech irc.libera.chat :Alois Sebrechts
+>> :tungsten.libera.chat NOTICE * :*** Checking Ident
+>> :tungsten.libera.chat NOTICE * :*** Looking up your hostname...
+>> :tungsten.libera.chat NOTICE * :*** Couldn't look up your hostname
+>> :tungsten.libera.chat NOTICE * :*** No Ident response
+>> :tungsten.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl tls account-tag cap-notify echo-message solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix
+>> :tungsten.libera.chat CAP asebrech ACK :multi-prefix
+<< CAP END
+>> :tungsten.libera.chat 001 asebrech :Welcome to the Libera.Chat Internet Relay Chat Network asebrech
+<< MODE asebrech +i
+>> :tungsten.libera.chat 002 asebrech :Your host is tungsten.libera.chat[130.239.18.120/6665], running version solanum-1.0-dev
+>> :tungsten.libera.chat 003 asebrech :This server was created Mon Jul 11 2022 at 04:02:44 UTC
+>> :tungsten.libera.chat 004 asebrech tungsten.libera.chat solanum-1.0-dev DGMQRSZaghilopsuwz CFILMPQSTbcefgijklmnopqrstuvz bkloveqjfI
+>> :tungsten.libera.chat 005 asebrech FNC MONITOR=100 KNOCK WHOX CALLERID=g ETRACE SAFELIST ELIST=CMNTU CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQSTcgimnprstuz :are supported by this server
+>> :tungsten.libera.chat 005 asebrech CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D :are supported by this server
+>> :tungsten.libera.chat 005 asebrech TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz :are supported by this server
+>> :tungsten.libera.chat 251 asebrech :There are 74 users and 48640 invisible on 28 servers
+>> :tungsten.libera.chat 252 asebrech 42 :IRC Operators online
+>> :tungsten.libera.chat 253 asebrech 24 :unknown connection(s)
+>> :tungsten.libera.chat 254 asebrech 22621 :channels formed
+>> :tungsten.libera.chat 255 asebrech :I have 2811 clients and 1 servers
+>> :tungsten.libera.chat 265 asebrech 2811 2834 :Current local users 2811, max 2834
+>> :tungsten.libera.chat 266 asebrech 48714 49931 :Current global users 48714, max 49931
+>> :tungsten.libera.chat 250 asebrech :Highest connection count: 2835 (2834 clients) (18225 connections received)
+>> :tungsten.libera.chat 375 asebrech :- tungsten.libera.chat Message of the Day - 
+>> :tungsten.libera.chat 372 asebrech :- Welcome to Libera Chat, the IRC network for
+>> :tungsten.libera.chat 372 asebrech :- free & open-source software and peer directed projects.
+>> :tungsten.libera.chat 372 asebrech :-  
+>> :tungsten.libera.chat 372 asebrech :- Use of Libera Chat is governed by our network policies.
+>> :tungsten.libera.chat 372 asebrech :-  
+>> :tungsten.libera.chat 372 asebrech :- To reduce network abuses we perform open proxy checks
+>> :tungsten.libera.chat 372 asebrech :- on hosts at connection time.
+>> :tungsten.libera.chat 372 asebrech :-  
+>> :tungsten.libera.chat 372 asebrech :- Please visit us in #libera for questions and support.
+>> :tungsten.libera.chat 372 asebrech :-  
+>> :tungsten.libera.chat 372 asebrech :- Website and documentation:  https://libera.chat
+>> :tungsten.libera.chat 372 asebrech :- Webchat:                    https://web.libera.chat
+>> :tungsten.libera.chat 372 asebrech :- Network policies:           https://libera.chat/policies
+>> :tungsten.libera.chat 372 asebrech :- Email:                      support@libera.chat
+>> :tungsten.libera.chat 376 asebrech :End of /MOTD command.
+>> :asebrech MODE asebrech :+iw
+<< PING tungsten.libera.chat
+>> :tungsten.libera.chat PONG tungsten.libera.chat :tungsten.libera.chat
+--> lag pong
+<< CAP LS
+<< NICK asebrech
+<< USER asebrech asebrech irc.libera.chat :Alois Sebrechts
+>> :molybdenum.libera.chat NOTICE * :*** Checking Ident
+>> :molybdenum.libera.chat NOTICE * :*** Looking up your hostname...
+>> :molybdenum.libera.chat NOTICE * :*** Couldn't look up your hostname
+>> :molybdenum.libera.chat NOTICE * :*** No Ident response
+>> :molybdenum.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl tls account-tag cap-notify echo-message solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix
+>> :molybdenum.libera.chat CAP asebrech ACK :multi-prefix
+<< CAP END
+>> :molybdenum.libera.chat 001 asebrech :Welcome to the Libera.Chat Internet Relay Chat Network asebrech
+<< MODE asebrech +i
+>> :molybdenum.libera.chat 002 asebrech :Your host is molybdenum.libera.chat[51.161.82.214/6665], running version solanum-1.0-dev
+>> :molybdenum.libera.chat 003 asebrech :This server was created Mon Jul 4 2022 at 10:14:47 UTC
+>> :molybdenum.libera.chat 004 asebrech molybdenum.libera.chat solanum-1.0-dev DGMQRSZaghilopsuwz CFILMPQSTbcefgijklmnopqrstuvz bkloveqjfI
+>> :molybdenum.libera.chat 005 asebrech WHOX KNOCK MONITOR=100 ETRACE FNC SAFELIST ELIST=CMNTU CALLERID=g CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQSTcgimnprstuz :are supported by this server
+>> :molybdenum.libera.chat 005 asebrech CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D :are supported by this server
+>> :molybdenum.libera.chat 005 asebrech TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz :are supported by this server
+>> :molybdenum.libera.chat 251 asebrech :There are 74 users and 48645 invisible on 28 servers
+>> :molybdenum.libera.chat 252 asebrech 42 :IRC Operators online
+>> :molybdenum.libera.chat 253 asebrech 8 :unknown connection(s)
+>> :molybdenum.libera.chat 254 asebrech 22620 :channels formed
+>> :molybdenum.libera.chat 255 asebrech :I have 2829 clients and 1 servers
+>> :molybdenum.libera.chat 265 asebrech 2829 3029 :Current local users 2829, max 3029
+>> :molybdenum.libera.chat 266 asebrech 48719 49931 :Current global users 48719, max 49931
+>> :molybdenum.libera.chat 250 asebrech :Highest connection count: 3030 (3029 clients) (41347 connections received)
+>> :molybdenum.libera.chat 375 asebrech :- molybdenum.libera.chat Message of the Day - 
+>> :molybdenum.libera.chat 372 asebrech :- -[ Molybdenum ]-[ Atomic number: 42 ]-[ Chemical symbol: Mo ]-
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Molybdenum has been known throughout history, though its
+>> :molybdenum.libera.chat 372 asebrech :- properties meant that it was confused with lead ores. It was
+>> :molybdenum.libera.chat 372 asebrech :- first identified as a distinct element in 1778, meaning our
+>> :molybdenum.libera.chat 372 asebrech :- modern understanding of its existence reaches about as far
+>> :molybdenum.libera.chat 372 asebrech :- back as American independence.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Molybdenum has a very high melting point, 2623°C, the fifth-
+>> :molybdenum.libera.chat 372 asebrech :- highest temperature of any element.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- While pure molybdenum is only about as strong as tooth enamel,
+>> :molybdenum.libera.chat 372 asebrech :- it forms strong alloys that are resistant to corrosion and
+>> :molybdenum.libera.chat 372 asebrech :- stable under varying temperatures. As a result, these alloys
+>> :molybdenum.libera.chat 372 asebrech :- are used for metal armour plates, high-performance aircraft
+>> :molybdenum.libera.chat 372 asebrech :- parts, and pumps for molten metal flows.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- In its elemental form, it can be used as a fertiliser, and the
+>> :molybdenum.libera.chat 372 asebrech :- isotope molybdenum-99 is used as a source of technetium-99m,
+>> :molybdenum.libera.chat 372 asebrech :- an important medical radioisotope used for 3D bone scans and
+>> :molybdenum.libera.chat 372 asebrech :- the investigation of blood flow when diagnosing heart disease.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Welcome to Libera Chat, the IRC network for
+>> :molybdenum.libera.chat 372 asebrech :- free & open-source software and peer directed projects.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Use of Libera Chat is governed by our network policies.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- To reduce network abuses we perform open proxy checks
+>> :molybdenum.libera.chat 372 asebrech :- on hosts at connection time.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Please visit us in #libera for questions and support.
+>> :molybdenum.libera.chat 372 asebrech :-  
+>> :molybdenum.libera.chat 372 asebrech :- Website and documentation:  https://libera.chat
+>> :molybdenum.libera.chat 372 asebrech :- Webchat:                    https://web.libera.chat
+>> :molybdenum.libera.chat 372 asebrech :- Network policies:           https://libera.chat/policies
+>> :molybdenum.libera.chat 372 asebrech :- Email:                      support@libera.chat
+>> :molybdenum.libera.chat 376 asebrech :End of /MOTD command.
+>> :asebrech MODE asebrech :+iw
+<< PING molybdenum.libera.chat
+<< NICK alois
+>> :molybdenum.libera.chat PONG molybdenum.libera.chat :molybdenum.libera.chat
+--> lag pong
+>> :asebrech!~asebrech@62.129.8.171 NICK :alois
+>> :NickServ!NickServ@services.libera.chat NOTICE alois :This nickname is registered. Please choose a different nickname, or identify via /msg NickServ IDENTIFY alois <password>
+<< NICK alllll
+>> :alois!~asebrech@62.129.8.171 NICK :alllll
