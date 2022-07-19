@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:50:48 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:16:57 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/19 19:17:52 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main()
 {
 	Server	server;
+	//asdasasdasd
 	try
 	{
 		server.init();
