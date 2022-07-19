@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 16:19:57 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:23:22 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ class	Client
 			bool	getbeDeleted() const;
 			void	setbeDeleted(bool val);
 
+			bool	getOperator() const;
+			void	setOperator(bool val);
+
 	private:
 			int	socket;
 			std::string	IP;
@@ -75,6 +78,7 @@ class	Client
 			bool	usered;
 			bool	registered;
 			bool	beDeleted;
+			bool	Operator;
 };
 
 #endif

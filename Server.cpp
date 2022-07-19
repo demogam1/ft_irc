@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 16:15:45 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:39:31 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
-Server::Server() : port(4242), pass(""), command(pass, clients, IP)
+Server::Server() : port(4242), pass("1234"), command(pass, clients, IP)
 {
 	myhostname();
 	command.setIP(IP);

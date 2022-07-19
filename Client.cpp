@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 16:20:41 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:29:55 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Client::Client(int sd, char * IP, uint32_t port) : socket(sd), IP(IP), port(port),
 				buffer(), nick("*"), pass(""), user("*"), mode("*"), unused("*"), realname("*"),
-				nicked(false), usered(false), registered(false), beDeleted(false) {}
+				nicked(false), usered(false), registered(false), beDeleted(false), Operator(false) {}
 
 Client::~Client() {}
 
@@ -57,3 +57,6 @@ void	Client::setRegistered(bool val) { registered = val; }
 
 bool	Client::getbeDeleted() const { return(beDeleted); }
 void	Client::setbeDeleted(bool val) { beDeleted = val; }
+
+bool	Client::getOperator() const { return(Operator); }
+void	Client::setOperator(bool val) { Operator = val; }
