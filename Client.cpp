@@ -6,7 +6,7 @@
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 13:48:47 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:20:41 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Client::Client(int sd, char * IP, uint32_t port) : socket(sd), IP(IP), port(port),
 				buffer(), nick("*"), pass(""), user("*"), mode("*"), unused("*"), realname("*"),
-				nicked(false), usered(false), registered(false) {}
+				nicked(false), usered(false), registered(false), beDeleted(false) {}
 
 Client::~Client() {}
 
@@ -54,3 +54,6 @@ void	Client::setUsered(bool val) { usered = val; }
 
 bool	Client::getRegistered() const { return(registered); }
 void	Client::setRegistered(bool val) { registered = val; }
+
+bool	Client::getbeDeleted() const { return(beDeleted); }
+void	Client::setbeDeleted(bool val) { beDeleted = val; }

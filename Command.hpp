@@ -6,7 +6,7 @@
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 16:52:52 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:57:45 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ class	Command
 
 			void	sendMsg(Client const & client, std::string nb, std::string opt, std::string err);
 
-			void	sendConfirm(Client const & client, std::vector<std::string> const & cmds);
+			void	sendConfirm(Client const & client, std::string const & cmd, std::string const & opt);
+
+			void	sendError(Client const & client, std::string const & arg, std::string const & opt);
 
 			bool	isSpecial(char c) const;
 

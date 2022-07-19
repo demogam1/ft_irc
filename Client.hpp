@@ -6,7 +6,7 @@
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 13:42:14 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:19:57 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ class	Client
 			bool	getRegistered() const;
 			void	setRegistered(bool val);
 
+			bool	getbeDeleted() const;
+			void	setbeDeleted(bool val);
+
 	private:
 			int	socket;
 			std::string	IP;
@@ -71,6 +74,7 @@ class	Client
 			bool	nicked;
 			bool	usered;
 			bool	registered;
+			bool	beDeleted;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 16:32:02 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:15:45 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ void	Server::run()
 						std::cout << buffer;
 						command.parsCmd(*it);
 						it->getBuff().clear();
+						if (it->getbeDeleted())
+						{
+							std::cout << "Host disconnected, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
+							close(sd);
+							clients.erase(it);
+						}
 					}
 					bzero(buffer, ret);
 				}

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 11:15:57 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:15:29 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("USER")] = &Command::user; 
 	cmdMap[std::string("PASS")] = &Command::pass; 
 	cmdMap[std::string("QUIT")] = &Command::quit;
-	cmdMap[std::string("TOTO")] = &Command::quit;
-	cmdMap[std::string("TATA")] = &Command::quit;
 }
 
 Command::~Command() {}
@@ -36,10 +34,17 @@ void	Command::sendMsg(Client const & client, std::string nb, std::string opt, st
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
-void	Command::sendConfirm(Client const & client, std::vector<std::string> const & cmds)
+void    Command::sendConfirm(Client const & client, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + CLIENT);
-	message += " " + cmds[0] + " :" + cmds[1] + "\r\n";
+	message += " " + cmd + " :" + opt + "\r\n";
+	send(client.getSocket(), message.c_str(), message.length(), 0);
+}
+
+void    Command::sendError(Client const & client, std::string const & arg, std::string const & opt)
+{
+	std::string message("ERROR");
+	message += " :" + arg + ": " + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
@@ -144,7 +149,7 @@ void	Command::nick(std::vector<std::string> cmds, Client & client)
 	if (client.getNick() != cmds[1])
 	{
 		if (client.getRegistered())
-			sendConfirm(client, cmds);
+			sendConfirm(client, cmds[0], cmds[1]);
 		client.setNick(cmds[1]);
 		if (!client.getRegistered())
 		{
@@ -178,6 +183,8 @@ void	Command::user(std::vector<std::string> cmds, Client & client)
 
 void	Command::quit(std::vector<std::string> cmds, Client & client)
 {
-	(void)cmds;
-	(void)client;
+	if (client.getRegistered())
+		sendConfirm(client, cmds[0], "Client Quit");
+	sendError(client,"Closing Link", client.getIP() + " (Client Quit)");
+	client.setbeDeleted(true);
 }
