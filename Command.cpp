@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:02:03 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:12:27 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Command::Command(std::string const & password, std::list<Client> & clients, std::string const & IP) : password(password), clients(clients), IP(IP) 
 {
-	cmdMap[std::string("NICK")] = &Command::nick; 
+	cmdMap[std::string("NICK")] = &Command::nick;
 	cmdMap[std::string("USER")] = &Command::user; 
 	cmdMap[std::string("PASS")] = &Command::pass; 
 	cmdMap[std::string("QUIT")] = &Command::quit;
