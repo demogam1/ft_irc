@@ -6,9 +6,11 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 11:11:16 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/19 11:15:57 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "Command.hpp"
 
@@ -19,6 +21,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("PASS")] = &Command::pass; 
 	cmdMap[std::string("QUIT")] = &Command::quit;
 	cmdMap[std::string("TOTO")] = &Command::quit;
+	cmdMap[std::string("TATA")] = &Command::quit;
 }
 
 Command::~Command() {}
