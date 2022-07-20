@@ -6,7 +6,7 @@
 #    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/20 11:27:07 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/20 18:15:31 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,14 @@ SRC =	main.cpp \
 		Server.cpp \
 		Client.cpp \
 		Command.cpp \
+		Channel.cpp \
 		pass.cpp \
 		nick.cpp \
 		user.cpp \
 		quit.cpp \
 		oper.cpp \
 		mode.cpp \
+		join.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
