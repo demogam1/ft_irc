@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/20 17:34:42 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 18:22:26 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                     if(client.getOperator() == true)
                     {
                         client.setOperator(false);
-                        sendModConfirm(client , cmds[0], cmds[2]);
+                        sendModConfirm(client , cmds[0], "-o");
                     }
                 }
             }

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:15:19 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 19:55:44 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ class	Command
 			void	mode(std::vector<std::string> cmds, Client & client);
 
 			void    sendModConfirm(Client const & client, std::string const & cmd, std::string const & opt);
-	
+
+			void	pong(std::vector<std::string> cmds, Client & client);
+
 	private :
 			std::string	password;
 			std::list<Client> & clients;
