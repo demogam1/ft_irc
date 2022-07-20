@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:03:22 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:22:31 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/socket.h>
 
 # include "Client.hpp"
+# include "Channel.hpp"
 # include "define.hpp"
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
@@ -59,12 +60,15 @@ class	Command
 			void	quit(std::vector<std::string> cmds, Client & client);
 
 			void	oper(std::vector<std::string> cmds, Client & client);
+			
+			void	join(std::vector<std::string> cmds, Client & client);
 
 	private :
 			std::string	password;
 			std::list<Client> & clients;
 			std::string	IP;
 			std::map<std::string, pfunc>	cmdMap;
+			std::map<std::string, Channel>	chanMap;
 };
 
 #endif

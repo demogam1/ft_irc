@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass.cpp                                           :+:      :+:    :+:   */
+/*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 17:57:14 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 16:05:24 by asebrech         ###   ########.fr       */
+/*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
+/*   Updated: 2022/07/20 17:42:19 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+# include "Channel.hpp"
 
-void	Command::pass(std::vector<std::string> cmds, Client & client)
+Channel::Channel() {}
+
+Channel::~Channel() {}
+
+void	Channel::addClient(Client * client)
 {
-	if (cmds.size() == 1)
-	{
-		sendMsg(client, "461", "", ERR_NEEDMOREPARAMS);
-		return ;
-	}
-	if (client.getRegistered())
-	{
-		sendMsg(client, "462", "", ERR_ALREADYREGISTRED);
-		return;
-	}
-	client.setPass(cmds[1]);
+	clients.push_back(client);
 }

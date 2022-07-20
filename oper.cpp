@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:15:02 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/20 10:21:20 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:49:11 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@ void Command::oper(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
         return;
     }
-	Client	clientOP(client);
 	std::list<Client>::iterator	it = clients.begin();
-	if (client.getUser() != cmds[1])
-	{
-		for (; it != clients.end(); it++)
-			if (cmds[1] == it->getUser())
-			{
-				clientOP = *it;
-				break;
-			}
-	}
-    if (it == clients.end() || !clientOP.getRegistered())
+	for (; it != clients.end(); it++)
+		if (cmds[1] == it->getNick())
+			break;
+    if (it == clients.end() || !it->getRegistered())
     {
         sendMsg(client, "491", "", ERR_NOOPERHOST);
         return;
@@ -45,10 +38,10 @@ void Command::oper(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "464", "", ERR_PASSWDMISMATCH);
         return;
     }
-	if (!clientOP.getOperator())
+	if (!it->getOperator())
 	{
-    	clientOP.setOperator(true);
-    	sendMsg(clientOP, "381", "", RPL_YOUREOPER);
+    	it->setOperator(true);
+    	sendMsg(*it, "381", "", RPL_YOUREOPER);
 	}
     return;
 }

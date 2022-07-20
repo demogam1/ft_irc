@@ -6,23 +6,21 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 09:45:55 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:08:03 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef client_HPP
-#define client_HPP
+#ifndef CLIENT_HPP
+# define CLIENT_HPP
 
-#include <string>
+# include <vector>
+# include <string>
 
 class	Client
 {
 	public:
 			Client(int sd, char * IP, uint32_t port );
-			Client(Client const &src);
 			~Client();
-
-			Client const	&operator=(Client const &rhs);
 
 			int	getSocket() const;
 			void setSocket(int sd);
@@ -66,6 +64,7 @@ class	Client
 			bool	getOperator() const;
 			void	setOperator(bool val);
 
+			std::vector<std::string>	okay;
 	private:
 			int	socket;
 			std::string	IP;
