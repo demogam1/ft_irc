@@ -6,7 +6,7 @@
 /*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:56:14 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 17:56:54 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:17:35 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	Command::nick(std::vector<std::string> cmds, Client & client)
 {
-	(void)client;
 	if (cmds.size() == 1)
 	{
 		sendMsg(client, "431", "", ERR_NONICKNAMEGIVEN);
@@ -47,10 +46,10 @@ void	Command::nick(std::vector<std::string> cmds, Client & client)
 		if (client.getRegistered())
 			sendConfirm(client, cmds[0], cmds[1]);
 		client.setNick(cmds[1]);
-		if (!client.getRegistered())
-		{
-			client.setNicked(true);
-			registerClient(client);
-		}
+	}
+	if (!client.getRegistered())
+	{
+		client.setNicked(true);
+		registerClient(client);
 	}
 }

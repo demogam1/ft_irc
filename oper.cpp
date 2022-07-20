@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:15:02 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/20 10:04:10 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:21:20 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void Command::oper(std::vector<std::string> cmds, Client & client)
     }
 	if (!clientOP.getOperator())
 	{
-    	client.setOperator(true);
+    	clientOP.setOperator(true);
     	sendMsg(clientOP, "381", "", RPL_YOUREOPER);
 	}
     return;
