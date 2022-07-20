@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:08:03 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:48:36 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ class	Client
 			bool	getOperator() const;
 			void	setOperator(bool val);
 
-			std::vector<std::string>	okay;
+			std::vector<std::string>	& getChannels();
+
 	private:
 			int	socket;
 			std::string	IP;
@@ -81,6 +82,7 @@ class	Client
 			bool	registered;
 			bool	beDeleted;
 			bool	Operator;
+			std::vector<std::string>	channels;
 };
 
 #endif

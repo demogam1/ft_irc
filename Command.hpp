@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:15:19 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 19:56:39 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class	Command
 
 			void	setIP(std::string const & val);
 
-			std::vector<std::string>	split(std::string const & s, std::string const & seperator);
+			std::vector<std::string>	splitCmd(std::string const & s, std::string const & seperator);
 
 			void	parsCmd(Client & client);
 

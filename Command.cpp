@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:14:56 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 19:58:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	Command::isSpecial(char c) const
 
 void	Command::setIP(std::string const & val) { IP = val;}
 
-std::vector<std::string>	Command::split(std::string const & s, std::string const & seperator)
+std::vector<std::string>	Command::splitCmd(std::string const & s, std::string const & seperator)
 {
 	 	std::vector<std::string> output;
  		std::string::size_type prev_pos = 0, pos = 0;
@@ -95,14 +95,14 @@ void	Command::parsCmd(Client & client)
 	(void)clients;
 	std::vector<std::string>	cmd;
 	if(client.getBuff()[client.getBuff().length() - 2] == '\r')
-		cmd = split(client.getBuff(), "\r\n");
+		cmd = splitCmd(client.getBuff(), "\r\n");
 	else
-		cmd = split(client.getBuff(), "\n");
+		cmd = splitCmd(client.getBuff(), "\n");
 	std::vector<std::string>::iterator	it = cmd.begin();
 	std::map<std::string, pfunc>::iterator	iter;
 	for (; it != cmd.end(); it++)
 	{
-		std::vector<std::string>	cmds = split(*it, " ");
+		std::vector<std::string>	cmds = splitCmd(*it, " ");
 		if (cmds[0][0] == ':')
 		{
 			cmds[0].erase(0, 1);

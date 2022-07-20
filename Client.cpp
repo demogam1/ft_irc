@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:01:54 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:48:33 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,5 @@ void	Client::setbeDeleted(bool val) { beDeleted = val; }
 
 bool	Client::getOperator() const { return(Operator); }
 void	Client::setOperator(bool val) { Operator = val; }
+
+std::vector<std::string>	& Client::getChannels() { return(channels); }
