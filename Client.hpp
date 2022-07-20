@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 20:23:22 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 09:45:55 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ class	Client
 {
 	public:
 			Client(int sd, char * IP, uint32_t port );
+			Client(Client const &src);
 			~Client();
+
+			Client const	&operator=(Client const &rhs);
 
 			int	getSocket() const;
 			void setSocket(int sd);

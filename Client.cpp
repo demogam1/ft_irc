@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 20:29:55 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 09:51:56 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 Client::Client(int sd, char * IP, uint32_t port) : socket(sd), IP(IP), port(port),
 				buffer(), nick("*"), pass(""), user("*"), mode("*"), unused("*"), realname("*"),
 				nicked(false), usered(false), registered(false), beDeleted(false), Operator(false) {}
+Client::Client(Client const & src) { *this = src; };
+
+Client const	& Client::operator=(Client const & rhs)
+{
+	if (this != &rhs)
+	{
+		socket = rhs.socket;
+		IP = rhs.IP;
+		port = rhs.port;
+		buffer = rhs.buffer;
+		nick = rhs.nick;
+		pass = rhs.pass;
+		user = rhs.user;
+		mode = rhs.mode;
+		unused = rhs.unused;
+		realname = rhs.realname;
+		nicked = rhs.nicked;
+		usered = rhs.usered;
+		registered = rhs.registered;
+		beDeleted = rhs.beDeleted;
+		Operator = rhs.Operator;
+	}
+	return (*this);
+}
 
 Client::~Client() {}
 

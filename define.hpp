@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 18:14:06 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 09:24:50 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ERR_NONICKNAMEGIVEN ":No nickname given"
 # define ERR_NICKNAMEINUSE ":Nickname is already in use"
 # define ERR_ERRONEUSNICKNAME ":Erroneous nickname"
+# define ERR_NOTREGISTERED ":You have not registered"
 # define ERR_NEEDMOREPARAMS ":Not enough parameters"
 # define ERR_ALREADYREGISTRED ":Unauthorized command (already registered)"
 # define ERR_PASSWDMISMATCH ":Password incorrect"
