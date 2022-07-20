@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:12:27 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/20 15:37:41 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("PASS")] = &Command::pass; 
 	cmdMap[std::string("QUIT")] = &Command::quit;
 	cmdMap[std::string("OPER")] = &Command::oper;
+	cmdMap[std::string("MODE")] = &Command::mode;
 }
 
 Command::~Command() {}
@@ -44,6 +45,13 @@ void    Command::sendError(Client const & client, std::string const & arg, std::
 {
 	std::string message("ERROR");
 	message += " :" + arg + ": " + opt + "\r\n";
+	send(client.getSocket(), message.c_str(), message.length(), 0);
+}
+
+void    Command::sendModConfirm(Client const & client, std::string const & cmd, std::string const & opt)
+{
+	std::string message(":" + client.getNick());
+	message += " " + cmd + " " + client.getNick() + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 

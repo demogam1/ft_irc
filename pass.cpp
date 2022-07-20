@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:57:14 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 17:57:56 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:05:14 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	Command::pass(std::vector<std::string> cmds, Client & client)
 {
 	if (cmds.size() == 1)
 	{
-		sendMsg(client, "431", "", ERR_NONICKNAMEGIVEN);
+		sendMsg(client, "461", "", ERR_NEEDMOREPARAMS);
 		return ;
 	}
 	if (client.getRegistered())

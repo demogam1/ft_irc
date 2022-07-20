@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:03:22 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:31:55 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,16 @@ class	Command
 
 			void	oper(std::vector<std::string> cmds, Client & client);
 
+			void	mode(std::vector<std::string> cmds, Client & client);
+
+			void    sendModConfirm(Client const & client, std::string const & cmd, std::string const & opt);
+	
 	private :
 			std::string	password;
 			std::list<Client> & clients;
 			std::string	IP;
 			std::map<std::string, pfunc>	cmdMap;
+			std::vector<std::string> mods;
 };
 
 #endif

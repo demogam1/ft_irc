@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 09:24:50 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:44:32 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@
 # define ERR_ALREADYREGISTRED ":Unauthorized command (already registered)"
 # define ERR_PASSWDMISMATCH ":Password incorrect"
 # define ERR_NOOPERHOST ":No O-lines for your host"
+# define ERR_UMODEUNKNOWNFLAG ":Unknown MODE flag"
+# define ERR_USERSDONTMATCH ":Cannot change mode for other users"
+
 
 #endif
