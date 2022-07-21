@@ -6,13 +6,13 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 15:40:32 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 16:36:09 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
-Server::Server() : port(4242), pass("1234"), command(pass, clients, IP)
+Server::Server() : port(4242), pass(""), command(pass, clients, IP)
 {
 	myhostname();
 	command.setIP(IP);

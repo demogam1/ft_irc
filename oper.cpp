@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:15:02 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/20 15:49:11 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:33:11 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void Command::oper(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "491", "", ERR_NOOPERHOST);
         return;
     }
-    if (cmds[2] != password)
+    if (!password.empty() && cmds[2] != password)
     {
         sendMsg(client, "464", "", ERR_PASSWDMISMATCH);
         return;
