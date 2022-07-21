@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:53 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:59:50 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@
 # define ERR_NOSUCHSERVICE ":No such service"
 # define ERR_NOPRIVILEGES ":Permission Denied- You're not an IRC operator"
 # define ERR_NOSUCHNICK ":No such nick/channel"
+# define ERR_NORECIPIENT ":No recipient given (PRIVMSG)"
+# define ERR_NOTEXTTOSEND ":No text to send"
+# define ERR_CANNOTSENDTOCHAN ":Cannot send to channel"
 
 #endif

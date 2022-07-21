@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:46 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:16:45 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ class	Command
 			void	pong(std::vector<std::string> cmds, Client & client);
 			
 			void	kill(std::vector<std::string> cmds, Client & client);
+
+			void	privatmsg(std::vector<std::string> cmds, Client & client);
 
 	private :
 			std::string	password;

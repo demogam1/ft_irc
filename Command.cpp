@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:24 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:16:22 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("JOIN")] = &Command::join;
 	cmdMap[std::string("PING")] = &Command::pong;
 	cmdMap[std::string("KILL")] = &Command::kill;
+	cmdMap[std::string("PRIVMSG")] = &Command::privatmsg;
 }
 
 Command::~Command() {}
