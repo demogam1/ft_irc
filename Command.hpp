@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 19:55:44 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 16:12:39 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <map>
 # include <vector>
 # include <sys/socket.h>
+# include <unistd.h>
 
 # include "Client.hpp"
 # include "Channel.hpp"
@@ -38,6 +39,8 @@ class	Command
 			void	sendMsg(Client const & client, std::string nb, std::string opt, std::string err);
 
 			void	sendConfirm(Client const & client, std::string const & cmd, std::string const & opt);
+
+			void    sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
 
 			void	sendError(Client const & client, std::string const & arg, std::string const & opt);
 
@@ -65,9 +68,11 @@ class	Command
 
 			void	mode(std::vector<std::string> cmds, Client & client);
 
-			void    sendModConfirm(Client const & client, std::string const & cmd, std::string const & opt);
+			void    sendSpecConfirm(Client const & client,std::string const & prefix, std::string const & cmd, std::string const & opt);
 
 			void	pong(std::vector<std::string> cmds, Client & client);
+			
+			void	kill(std::vector<std::string> cmds, Client & client);
 
 	private :
 			std::string	password;

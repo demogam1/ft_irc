@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:05:03 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:40:32 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	Server::run()
 		max_sd = master_socket;
 		for (it = clients.begin(); it != clients.end(); it++)
 		{
+			if (it->getbeDeleted())
+				it = clients.erase(it);
 			sd = it->getSocket();		
 			FD_SET(sd, &readfds);
 			if (sd > max_sd)
@@ -109,12 +111,6 @@ void	Server::run()
 						std::cout << buffer;
 						command.parsCmd(*it);
 						it->getBuff().clear();
-						if (it->getbeDeleted())
-						{
-							std::cout << "Host disconnected, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
-							close(sd);
-							it = clients.erase(it);
-						}
 					}
 					bzero(buffer, ret);
 				}

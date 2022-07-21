@@ -1,0 +1,5 @@
+===[COMMAND A FAIRE]===
+Pong
+Kill
+mode channel
+Private message

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 19:53:02 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/21 16:26:12 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("OPER")] = &Command::oper;
 	cmdMap[std::string("MODE")] = &Command::mode;
 	cmdMap[std::string("JOIN")] = &Command::join;
-	cmdMap[std::string("PONG")] = &Command::join;
+	cmdMap[std::string("PING")] = &Command::pong;
+	cmdMap[std::string("KILL")] = &Command::kill;
 }
 
 Command::~Command() {}
@@ -43,6 +44,14 @@ void    Command::sendConfirm(Client const & client, std::string const & cmd, std
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
+void    Command::sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
+{
+	std::string message(":" + TERMINATOR);
+	message += " " + cmd + " :" + opt + "\r\n";
+	send(client.getSocket(), message.c_str(), message.length(), 0);
+}
+
+
 void    Command::sendError(Client const & client, std::string const & arg, std::string const & opt)
 {
 	std::string message("ERROR");
@@ -50,10 +59,10 @@ void    Command::sendError(Client const & client, std::string const & arg, std::
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
-void    Command::sendModConfirm(Client const & client, std::string const & cmd, std::string const & opt)
+void    Command::sendSpecConfirm(Client const & client,std::string const & prefix, std::string const & cmd, std::string const & opt)
 {
-	std::string message(":" + client.getNick());
-	message += " " + cmd + " " + client.getNick() + " :" + opt + "\r\n";
+	std::string message(":" + prefix);
+	message += " " + cmd + " " + prefix + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
