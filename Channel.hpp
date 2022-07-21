@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:45:34 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:54:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ class	Channel
 			Channel();
 			~Channel();
 
-			void	addClient(Client * Client);
+			void	addClient(Client * client);
 
-			void	addChanOp(Client * Client);
+			void	addChanOp(Client * client);
+
+			void	deleteClient(Client * client);
 
 			void    sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt);
 

@@ -135,7 +135,7 @@ void	Command::registerClient(Client & client)
 {
 	if (client.getNicked() && client.getUsered())
 	{
-		if (client.getPass() != password)
+		if (!password.empty() && client.getPass() != password)
 		{
 			sendMsg(client, "464", "", ERR_PASSWDMISMATCH);
 			return ;
