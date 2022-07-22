@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:06:21 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:06:56 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,11 @@ bool	Client::isInChan(std::string const & str) const
 			return (true);	
 	}
 	return (false);
+}
+
+std::pair<bool, std::string> Client::getAway() const { return (away); }
+void	Client::setAway(std::pair<bool, std::string> val) 
+{
+	away.first = val.first;
+	away.second = val.second;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   privatmsg.cpp                                      :+:      :+:    :+:   */
+/*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/22 12:01:37 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:14:40 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         }
         else
         {
+            if (it->getAway().first == true)
+                sendMsg(client, "301", it->getNick() , ":" + it->getAway().second);
             sendConfirmTo(*it, client, cmds[0] + " " + cmds[1], cmds[2]);
             return;
         }

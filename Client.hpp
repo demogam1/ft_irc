@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:06:07 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:54:32 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <vector>
 # include <string>
+# include <utility>
 
 class	Client
 {
@@ -67,6 +68,10 @@ class	Client
 			std::vector<std::string>	& getChannels();
 
 			bool	isInChan(std::string const & str) const ;
+			
+			std::pair<bool, std::string> getAway() const;
+			void	setAway(std::pair<bool, std::string> val);
+			
 
 	private:
 			int	socket;
@@ -85,6 +90,7 @@ class	Client
 			bool	beDeleted;
 			bool	Operator;
 			std::vector<std::string>	channels;
+			std::pair<bool, std::string> away;
 };
 
 #endif
