@@ -6,7 +6,7 @@
 #    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/21 18:40:34 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/22 12:20:37 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC =	main.cpp \
 		join.cpp \
 		pong.cpp \
 		kill.cpp \
-		privatmsg.cpp \
+		privmsg.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
