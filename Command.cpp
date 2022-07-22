@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 11:40:06 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:17:48 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	Command::registerClient(Client & client)
 {
 	if (client.getNicked() && client.getUsered())
 	{
-		if (client.getPass() != password)
+		if (!password.empty() && client.getPass() != password)
 		{
 			sendMsg(client, "464", "", ERR_PASSWDMISMATCH);
 			return ;
