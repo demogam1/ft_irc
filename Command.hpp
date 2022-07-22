@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:23:08 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:41:32 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ class	Command
 			void	oper(std::vector<std::string> cmds, Client & client);
 			
 			void	join(std::vector<std::string> cmds, Client & client);
+
+			void	part(std::vector<std::string> cmds, Client & client);
 
 			void	mode(std::vector<std::string> cmds, Client & client);
 

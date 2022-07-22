@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 14:54:32 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:41:20 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ class	Client
 			std::pair<bool, std::string> getAway() const;
 			void	setAway(std::pair<bool, std::string> val);
 			
+
+			void	deleteChan(std::string const & str);
 
 	private:
 			int	socket;

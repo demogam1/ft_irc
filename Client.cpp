@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:06:56 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:41:08 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,16 @@ void	Client::setAway(std::pair<bool, std::string> val)
 {
 	away.first = val.first;
 	away.second = val.second;
+}
+void	Client::deleteChan(std::string const & str)
+{
+	std::vector<std::string>::const_iterator	it = channels.begin();
+	for (; it != channels.end(); it++)
+	{
+		if (str == *it)
+		{
+			channels.erase(it);
+			return;
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 14:42:43 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:41:39 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define RPL_NOWAWAY ":You have been marked as being away"
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
+# define ERR_NOTONCHANNEL " :You're not on that channel"
 # define ERR_UNKNOWNCOMMAND ":Unknown command"
 # define ERR_NONICKNAMEGIVEN ":No nickname given"
 # define ERR_NICKNAMEINUSE ":Nickname is already in use"

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:23:25 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:41:27 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("OPER")] = &Command::oper;
 	cmdMap[std::string("MODE")] = &Command::mode;
 	cmdMap[std::string("JOIN")] = &Command::join;
+	cmdMap[std::string("PART")] = &Command::part;
 	cmdMap[std::string("PING")] = &Command::pong;
 	cmdMap[std::string("KILL")] = &Command::kill;
 	cmdMap[std::string("PRIVMSG")] = &Command::privatmsg;
@@ -44,14 +45,20 @@ void	Command::sendMsg(Client const & client, std::string nb, std::string opt, st
 void    Command::sendConfirm(Client const & client, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + CLIENT);
-	message += " " + cmd + " :" + opt + "\r\n";
+	if (opt.empty())
+		message += " " + cmd + "\r\n";
+	else
+		message += " " + cmd + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
 void    Command::sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + TERMINATOR);
-	message += " " + cmd + " :" + opt + "\r\n";
+	if (opt.empty())
+		message += " " + cmd + "\r\n";
+	else
+		message += " " + cmd + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
