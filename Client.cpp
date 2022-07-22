@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:09:30 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:45:28 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ bool	Client::isInChan(std::string const & str) const
 			return (true);	
 	}
 	return (false);
+}
+
+std::pair<bool, std::string> Client::getAway() const { return (away); }
+void	Client::setAway(std::pair<bool, std::string> val) 
+{
+	away.first = val.first;
+	away.second = val.second;
 }
 
 void	Client::deleteChan(std::string const & str)

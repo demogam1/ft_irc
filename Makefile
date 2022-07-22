@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
+#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/22 15:10:57 by asebrech         ###   ########.fr        #
+#    Updated: 2022/07/22 15:43:25 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRC =	main.cpp \
 		pong.cpp \
 		kill.cpp \
 		privmsg.cpp \
+		away.cpp \
+		notice.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

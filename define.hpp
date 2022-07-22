@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:01:47 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:43:33 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define RPL_WELCOME ":Welcome to the ft_irc Internet Relay Network " + CLIENT
 # define RPL_YOUREOPER ":You are now an IRC operator"
+# define RPL_UNAWAY ":You are no longer marked as being away"
+# define RPL_NOWAWAY ":You have been marked as being away"
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
 # define ERR_NOTONCHANNEL " :You're not on that channel"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:31:47 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:43:48 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("PING")] = &Command::pong;
 	cmdMap[std::string("KILL")] = &Command::kill;
 	cmdMap[std::string("PRIVMSG")] = &Command::privatmsg;
+	cmdMap[std::string("AWAY")] = &Command::away;
+	cmdMap[std::string("NOTICE")] = &Command::notice;
 }
 
 Command::~Command() {}

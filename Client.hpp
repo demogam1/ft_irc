@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:11:10 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:44:52 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <vector>
 # include <string>
+# include <utility>
 
 class	Client
 {
@@ -67,6 +68,10 @@ class	Client
 			std::vector<std::string>	& getChannels();
 
 			bool	isInChan(std::string const & str) const ;
+			
+			std::pair<bool, std::string> getAway() const;
+			void	setAway(std::pair<bool, std::string> val);
+			
 
 			void	deleteChan(std::string const & str);
 
@@ -87,6 +92,7 @@ class	Client
 			bool	beDeleted;
 			bool	Operator;
 			std::vector<std::string>	channels;
+			std::pair<bool, std::string> away;
 };
 
 #endif
