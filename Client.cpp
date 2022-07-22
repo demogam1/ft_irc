@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:06:21 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:09:30 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,17 @@ bool	Client::isInChan(std::string const & str) const
 			return (true);	
 	}
 	return (false);
+}
+
+void	Client::deleteChan(std::string const & str)
+{
+	std::vector<std::string>::const_iterator	it = channels.begin();
+	for (; it != channels.end(); it++)
+	{
+		if (str == *it)
+		{
+			channels.erase(it);
+			return;
+		}
+	}
 }

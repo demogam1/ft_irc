@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
+#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/22 12:20:37 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/22 15:10:57 by asebrech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC =	main.cpp \
 		oper.cpp \
 		mode.cpp \
 		join.cpp \
+		part.cpp \
 		pong.cpp \
 		kill.cpp \
 		privmsg.cpp \

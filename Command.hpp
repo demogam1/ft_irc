@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 12:17:53 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 14:49:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ class	Command
 			void	oper(std::vector<std::string> cmds, Client & client);
 			
 			void	join(std::vector<std::string> cmds, Client & client);
+
+			void	part(std::vector<std::string> cmds, Client & client);
 
 			void	mode(std::vector<std::string> cmds, Client & client);
 

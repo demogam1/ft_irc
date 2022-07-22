@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 12:17:24 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:37:26 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ void	Channel::deleteClient(Client * client)
 		}
 	}
 }
+
 void    Channel::sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + CLIENT);
-	message += " " + cmd + " :" + opt + "\r\n";
+	if (opt.empty())
+		message += " " + cmd + "\r\n";
+	else
+		message += " " + cmd + " :" + opt + "\r\n";
 	std::vector<Client *>::iterator	it = clients.begin();
 	for(; it != clients.end(); it++)
 		if (*it != &client)

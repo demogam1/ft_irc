@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 18:59:50 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 15:01:47 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define RPL_YOUREOPER ":You are now an IRC operator"
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
+# define ERR_NOTONCHANNEL " :You're not on that channel"
 # define ERR_UNKNOWNCOMMAND ":Unknown command"
 # define ERR_NONICKNAMEGIVEN ":No nickname given"
 # define ERR_NICKNAMEINUSE ":Nickname is already in use"
