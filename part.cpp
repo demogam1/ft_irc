@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:50:37 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:28:45 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:21:05 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,15 @@ void Command::part(std::vector<std::string> cmds, Client &client)
 		{
 			if (client.isInChan(*it))
 			{
+				sendConfirm(client, cmds[0] + " " + *it, "");
+				itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 				itMap->second.deleteClient(&client);
 				client.deleteChan(*it);
-				if (cmds.size() > 2)
-				{
-					if (cmds[2][0] == ':')
-						cmds[2].erase(0, 1);
-					sendConfirm(client, cmds[0] + " " + cmds[1], cmds[2]);
-					itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1], cmds[2]);
-				}
-				else
-				{
-					sendConfirm(client, cmds[0] + " " + cmds[1], "");
-					itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1], "");
-				}
+				if (itMap->second.chanEmpty())
+					chanMap.erase(itMap);
 			}
 			else
-				sendMsg(client, "403", cmds[0], *it + ERR_NOTONCHANNEL);
+				sendMsg(client, "442", cmds[0], *it + ERR_NOTONCHANNEL);
 		}
 	}
 }

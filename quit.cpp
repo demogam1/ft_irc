@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:59:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 14:39:08 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:10:04 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ void Command::quit(std::vector<std::string> cmds, Client &client)
 		else
 			sendConfirm(client, cmds[0], client.getNick());
 		std::vector<std::string>::iterator it = client.getChannels().begin();
+		std::map<std::string, Channel>::iterator	itMap;
 		for (; it != client.getChannels().end(); it++)
-			chanMap[*it].deleteClient(&client);
+		{
+			itMap = chanMap.find(*it);
+			itMap->second.deleteClient(&client);
+			if(itMap->second.chanEmpty())
+				chanMap.erase(itMap);
+		}
 		std::list<Client>::iterator itClient = clients.begin();
 		for (; itClient != clients.end(); itClient++)
 		{

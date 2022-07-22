@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:37:26 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:29:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ void    Channel::sendConfirmChan(Client const & client, std::string const & cmd,
 	for(it = chanOp.begin(); it != chanOp.end(); it++)
 		if (*it != &client)
 			send((*it)->getSocket(), message.c_str(), message.length(), 0);
+}
+
+bool	Channel::chanEmpty() const
+{
+	return (clients.empty() && chanOp.empty());
 }

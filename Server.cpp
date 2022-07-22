@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:36:09 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 18:00:17 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,24 +96,20 @@ void	Server::run()
 			if (FD_ISSET(sd, &readfds))
 			{
 				if ((ret = recv(sd, (void*)buffer, 1024, 0)) == 0)
-				{
-					std::cout << "Host disconnected, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
-					close(sd);
-					it = clients.erase(it);
-				}	
+					it->getBuff().assign("QUIT :Remote host closed the connection\r\n");
 				else
 				{
 					buffer[ret] = '\0';
 					it->getBuff().append(buffer);
-					if (it->getBuff()[it->getBuff().length() - 1] == '\n')
-					{
-						std::cout << "Command received, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
-						std::cout << buffer;
-						command.parsCmd(*it);
-						it->getBuff().clear();
-					}
-					bzero(buffer, ret);
 				}
+				if (it->getBuff()[it->getBuff().length() - 1] == '\n')
+				{
+					std::cout << "Command received, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
+					std::cout << it->getBuff();
+					command.parsCmd(*it);
+					it->getBuff().clear();
+				}
+				bzero(buffer, ret);
 			}
 		}
 	}

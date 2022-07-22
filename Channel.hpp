@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 12:18:18 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:28:01 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class	Channel
 			void	deleteClient(Client * client);
 
 			void    sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt);
+
+			bool	chanEmpty() const;
 
 	private:
 

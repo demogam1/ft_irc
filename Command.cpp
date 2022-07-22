@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:43:48 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 16:55:54 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,22 @@ void	Command::registerClient(Client & client)
 		client.setRegistered(true);
 		sendMsg(client, "001", "", RPL_WELCOME); 
 	}
+}
+
+std::vector<std::string>    Command::splitChan(std::string const & s, std::string const & seperator)
+{
+	std::vector<std::string> output;
+	std::string::size_type prev_pos = 0, pos = 0;
+	while((pos = s.find(seperator, pos)) != std::string::npos)
+	{
+		std::string substring( s.substr(prev_pos, pos-prev_pos) );
+		if (!substring.empty())
+			output.push_back(substring);
+		pos += seperator.length();
+		prev_pos = pos;
+	}
+	std::string substring( s.substr(prev_pos, pos-prev_pos) );
+	if (!substring.empty())
+		output.push_back(substring);
+	return output;
 }
