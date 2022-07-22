@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:45:34 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 12:01:05 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class	Channel
 			void	addChanOp(Client * Client);
 
 			void    sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt);
+
+			// void	sendConfirmChanTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
 
 	private:
 

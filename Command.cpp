@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 17:16:22 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 11:40:06 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,12 @@ void    Command::sendConfirm(Client const & client, std::string const & cmd, std
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
-void    Command::sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
+void    Command::sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + TERMINATOR);
 	message += " " + cmd + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
-
 
 void    Command::sendError(Client const & client, std::string const & arg, std::string const & opt)
 {

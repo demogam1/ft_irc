@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:31:07 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/21 16:30:51 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 11:40:10 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	Command::kill(std::vector<std::string> cmds, Client & client)
     {
         if (cmds[1] == it->getNick())
         {
-            sendKillConfirm(*it, client, cmds[0], "Client Kill");
+            sendConfirmTo(*it, client, cmds[0], "Client Kill");
             if (cmds[2][0] == ':')
 		        cmds[2].erase(0, 1);
             sendError(*it, "KILL REASON", "[" + cmds[2] + "]");

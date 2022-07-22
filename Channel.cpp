@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 14:47:49 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 12:02:52 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,4 @@ void    Channel::sendConfirmChan(Client const & client, std::string const & cmd,
 	for(it = chanOp.begin(); it != chanOp.end(); it++)
 		if (*it != &client)
 			send((*it)->getSocket(), message.c_str(), message.length(), 0);
-} 
+}

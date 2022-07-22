@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/21 19:57:54 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 12:01:37 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         std::map<std::string, Channel>::iterator	itMap;
         if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
         {
-            std::cout << "channel found and send cmds[2] \n"; /// <-------- TO DO 
+            itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1], cmds[2]);
             return;
         }
         else
@@ -56,7 +56,7 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         }
         else
         {
-            send(it->getSocket(), cmds[2].c_str(),cmds[2].length(), 0);
+            sendConfirmTo(*it, client, cmds[0] + " " + cmds[1], cmds[2]);
             return;
         }
     }

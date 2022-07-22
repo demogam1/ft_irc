@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 17:16:45 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 11:39:50 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class	Command
 
 			void	sendConfirm(Client const & client, std::string const & cmd, std::string const & opt);
 
-			void    sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
+			void    sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
 
 			void	sendError(Client const & client, std::string const & arg, std::string const & opt);
 
