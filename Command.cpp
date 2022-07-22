@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:24 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 10:59:31 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void    Command::sendConfirm(Client const & client, std::string const & cmd, std
 	send(client.getSocket(), message.c_str(), message.length(), 0);
 }
 
-void    Command::sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
+void    Command::sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + TERMINATOR);
 	message += " " + cmd + " :" + opt + "\r\n";

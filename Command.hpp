@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 16:35:46 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/22 10:59:04 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class	Command
 
 			void	sendConfirm(Client const & client, std::string const & cmd, std::string const & opt);
 
-			void    sendKillConfirm(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
+			void    sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt);
 
 			void	sendError(Client const & client, std::string const & arg, std::string const & opt);
 

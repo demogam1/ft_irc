@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:59:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/21 18:45:39 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/22 11:01:33 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void Command::quit(std::vector<std::string> cmds, Client &client)
 				{
 					if (itClient->isInChan(*it))
 					{
-						sendKillConfirm(*itClient, client, cmds[0], "Client Quit");
+						sendConfirmTo(*itClient, client, cmds[0], "Client Quit");
 						break;
 					}
 				}
