@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/21 12:44:36 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/23 18:05:57 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
         return;
     }
-    if (cmds[1] != client.getNick())
+    if (cmds[1][0] != '#')
     {
-        sendMsg(client, "502", "", ERR_USERSDONTMATCH);
-        return;
-    }
-   
-    else
-    {
+        if (cmds[2] != client.getNick())
+        {
+            sendMsg(client, "502", "", ERR_USERSDONTMATCH);
+            return;
+        }
         int sign = '+';
         int error_nbr = 0;
         for (size_t i = 0;i < cmds[2].length(); i++)
@@ -57,6 +56,33 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                 error_nbr++;
             }
         }
+    } /// TEST 
+    else if (cmds[1][0] == '#')
+    {
+        std::map<std::string, Channel>::iterator	itMap;
+        if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
+        {
+            std::cout << "channel trouver\n";
+            std::vector<std::string>::iterator it = client.getChannels().begin();
+            for(; it != client.getChannels().end(); it++){};
+            if (it != client.getChannels().end())
+            {
+                std::cout << "il est dans le channel\n";
+                return;
+            };
+            if (it == client.getChannels().end())
+            {
+                std::cout << "il est pas dans le channel\n";            
+                return;
+            };
+            return;
+        }
+        else
+        {
+            std::cout << "channel pas trouver\n";
+            return;
+        }
+
     }
     return;
 }
