@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 15:51:47 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:00:13 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	Channel::addClient(Client * client)
 
 void	Channel::addChanOp(Client * client)
 {
-	clients.push_back(client);
+	chanOp.push_back(client);
 }
 
 void	Channel::deleteClient(Client * client)
@@ -41,7 +41,7 @@ void	Channel::deleteClient(Client * client)
 	{
 		if (client == *it)
 		{
-			clients.erase(it);
+			chanOp.erase(it);
 			return ;
 		}
 	}
