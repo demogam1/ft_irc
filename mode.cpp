@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/23 18:05:57 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 17:20:46 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
     }
     if (cmds[1][0] != '#')
     {
-        if (cmds[2] != client.getNick())
+        if (cmds[1] != client.getNick())
         {
             sendMsg(client, "502", "", ERR_USERSDONTMATCH);
             return;
@@ -56,33 +56,39 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                 error_nbr++;
             }
         }
-    } /// TEST 
+    }
     else if (cmds[1][0] == '#')
     {
         std::map<std::string, Channel>::iterator	itMap;
         if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
         {
-            std::cout << "channel trouver\n";
-            std::vector<std::string>::iterator it = client.getChannels().begin();
-            for(; it != client.getChannels().end(); it++){};
-            if (it != client.getChannels().end())
+            std::cout << "le channel existe\n";
+            if (client.isInChan(cmds[1]) == true)
             {
-                std::cout << "il est dans le channel\n";
+                std::cout << "le client est dans le channel\n";
+                if(itMap->second.isChanOp(client) == true)
+                {
+                    std::cout << "le client est op dans le channel" << std::endl ;
+                    return;
+                }
+                else
+                {
+                    std::cout << "le client n est pas op dans le channel" << std::endl;
+                    return;
+                }
                 return;
-            };
-            if (it == client.getChannels().end())
+            }
+            else if (client.isInChan(cmds[1]) == false)
             {
-                std::cout << "il est pas dans le channel\n";            
+                std::cout << "le client n est pas dans le channel\n";
                 return;
-            };
-            return;
+            }
         }
         else
         {
-            std::cout << "channel pas trouver\n";
+            std::cout << "le channel n existe pas\n";
             return;
         }
-
     }
     return;
 }

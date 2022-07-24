@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:37:26 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:10:03 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	Channel::addClient(Client * client)
 
 void	Channel::addChanOp(Client * client)
 {
-	clients.push_back(client);
+	chanOp.push_back(client);
 }
 
 void	Channel::deleteClient(Client * client)
@@ -43,7 +43,7 @@ void	Channel::deleteClient(Client * client)
 		{
 			clients.erase(it);
 			return ;
-		}
+		}	
 	}
 }
 
@@ -61,4 +61,13 @@ void    Channel::sendConfirmChan(Client const & client, std::string const & cmd,
 	for(it = chanOp.begin(); it != chanOp.end(); it++)
 		if (*it != &client)
 			send((*it)->getSocket(), message.c_str(), message.length(), 0);
+}
+
+bool Channel::isChanOp(Client const & client)
+{
+	std::vector<Client *>::iterator it = chanOp.begin();
+	for(;it != chanOp.end(); it++)
+		if (*it == &client)
+			return true;
+	return false;
 }

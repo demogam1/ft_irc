@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 12:18:18 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 16:39:17 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "define.hpp"
 
 # include <vector> 
+
+# include <iostream>
 
 # include <sys/socket.h> 
 
@@ -34,6 +36,8 @@ class	Channel
 			void	deleteClient(Client * client);
 
 			void    sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt);
+
+			bool	isChanOp(Client const & client);
 
 	private:
 
