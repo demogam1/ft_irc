@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 14:33:55 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 20:46:14 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ class	Command
 			void	away(std::vector<std::string> msg, Client & client);
 
 			void	notice(std::vector<std::string> msg, Client & client);
+
+			void	welcomeMsg(Client & client);
 	private :
 			std::string	password;
 			std::list<Client> & clients;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oper.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:15:02 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/20 19:33:11 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 13:44:05 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void Command::oper(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "451", "", ERR_NOTREGISTERED);
         return;
 	}
-    if (cmds.size() < 3)
+	size_t	a = 3;
+	if (password.empty())
+		a = 2;
+    if (cmds.size() < a)
     {
         sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
         return;

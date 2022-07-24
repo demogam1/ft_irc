@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:55:47 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/13 10:15:20 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 14:17:39 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@
 
 # include "Client.hpp"
 # include "Command.hpp"
+# include "define.hpp"
 
 class	Server
 {
 	public:
+			Server(int port, std::string const & pass);
 			Server();
 			~Server();
 

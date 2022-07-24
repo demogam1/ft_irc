@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:44:52 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 10:49:31 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ class	Client
 			std::string	const & getRealname() const;
 			void	setRealname(std::string const & val);
 
+			bool	getConnected() const;
+			void	setConnected(bool val);
+
 			bool	getNicked() const;
 			void	setNicked(bool val);
 
@@ -86,6 +89,7 @@ class	Client
 			std::string mode;
 			std::string unused;
 			std::string realname;
+			bool	connected;
 			bool	nicked;
 			bool	usered;
 			bool	registered;

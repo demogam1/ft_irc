@@ -6,29 +6,11 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 17:08:13 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 20:46:19 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
-
-std::vector<std::string>    Command::splitChan(std::string const & s, std::string const & seperator)
-{
-	std::vector<std::string> output;
-	std::string::size_type prev_pos = 0, pos = 0;
-	while((pos = s.find(seperator, pos)) != std::string::npos)
-	{
-		std::string substring( s.substr(prev_pos, pos-prev_pos) );
-		if (!substring.empty())
-			output.push_back(substring);
-		pos += seperator.length();
-		prev_pos = pos;
-	}
-	std::string substring( s.substr(prev_pos, pos-prev_pos) );
-	if (!substring.empty())
-		output.push_back(substring);
-	return output;
-}
 
 void	Command::join(std::vector<std::string> cmds, Client & client)
 {
@@ -37,7 +19,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 		sendMsg(client, "451", "", ERR_NOTREGISTERED);
 		return ;
 	}
-	if (cmds.size() <= 1)
+	if (cmds.size() < 2)
 	{
 		sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
 		return ;
@@ -54,8 +36,8 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 			itMap =	chanMap.insert(std::pair<std::string, Channel>(*it, Channel())).first;
 			itMap->second.addChanOp(&client);
 			client.getChannels().push_back(*it);
-			sendConfirm(client, cmds[0], *it);
-			itMap->second.sendConfirmChan(client, cmds[0], *it);
+			sendConfirm(client, cmds[0] + " " + *it, "");
+			itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 		}
 		else
 		{
@@ -63,8 +45,8 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 			{
 				itMap->second.addClient(&client);
 				client.getChannels().push_back(*it);
-				sendConfirm(client, cmds[0], *it);
-				itMap->second.sendConfirmChan(client, cmds[0], *it);
+				sendConfirm(client, cmds[0] + " " + *it, "");
+				itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 			}
 		}
 	}

@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:50:48 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 19:23:22 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 14:58:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
-int	main()
+void	irc(Server & server)
 {
-	Server	server;
 	try
 	{
 		server.init();
@@ -22,7 +21,35 @@ int	main()
 	}
 	catch (std::exception & e)
 	{
-		std::cerr << "exception caught: " << e.what() << std::endl;
+		std::cerr << RED + "exception caught: " << e.what() + RESET << std::endl;
 	}
+}
+
+int	main(int ac, char **av)
+{
+	int	port = 0;
+
+	if (ac == 3)
+	{
+		port = atoi(av[1]);
+		if (port < 1 || port > 65535)
+		{
+			std::cout << RED + "Error Port : must be an int between 1 and 65535" + RESET << std::endl;
+			return (1);
+		}
+		Server	server(port, av[2]);
+		irc(server);
+	}
+	else if (ac == 1)
+	{
+		Server	server;
+		irc(server);
+	}
+	else
+	{
+		std::cout << YELLOW + "./ircserv <port> <password>" + RESET << std::endl;
+		return (1);
+	}
+
 	return (0);
 }
