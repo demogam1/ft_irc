@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:31:07 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/22 19:37:20 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 11:09:41 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ void Command::kill(std::vector<std::string> cmds, Client &client)
 	{
 		if (cmds[1] == it->getNick())
 		{
-			std::vector<std::string>::iterator itChan = it->getChannels().begin();
-			if (itChan != it->getChannels().end())
-			{
-				std::vector<std::string> partCmd(1, "PART");
-				partCmd.push_back("");
-				partCmd.push_back(":Killed by an operator");
-				for (; itChan != it->getChannels().end(); itChan++)
-					partCmd[1].append(*itChan + ",");
-				part(partCmd, *it);
-			}
 			if (cmds.size() > 2)
 			{
 				if (cmds[2][0] == ':')
@@ -52,9 +42,10 @@ void Command::kill(std::vector<std::string> cmds, Client &client)
 			}
 			else
 				sendConfirmTo(*it, client, cmds[0], it->getNick());
-			std::cout << "Host disconnected, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
-			close(it->getSocket());
-			it->setbeDeleted(true);
+			std::vector<std::string> quitCmd(1, "QUIT");
+			quitCmd.push_back(":" + it->getNick() + " has been killed by an operator");
+			it->setConnected(false);
+			quit(quitCmd, *it);
 			return;
 		}
 	}

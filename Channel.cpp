@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 16:29:15 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:51:47 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,29 @@ void    Channel::sendConfirmChan(Client const & client, std::string const & cmd,
 		message += " " + cmd + " :" + opt + "\r\n";
 	std::vector<Client *>::iterator	it = clients.begin();
 	for(; it != clients.end(); it++)
+	{
 		if (*it != &client)
+		{
 			send((*it)->getSocket(), message.c_str(), message.length(), 0);
+		}
+		if (VERBOSE)
+		{
+			std::cout << "Command replied, socket fd : " << (*it)->getSocket() << ", IP : " << (*it)->getIP() << ", port : " << (*it)->getPort() << std::endl;
+			std::cout << GREEN + ">> " + message + RESET;
+		}
+	}
 	for(it = chanOp.begin(); it != chanOp.end(); it++)
+	{
 		if (*it != &client)
+		{
 			send((*it)->getSocket(), message.c_str(), message.length(), 0);
+		}
+		if (VERBOSE)
+		{
+			std::cout << "Command replied, socket fd : " << (*it)->getSocket() << ", IP : " << (*it)->getIP() << ", port : " << (*it)->getPort() << std::endl;
+			std::cout << GREEN + ">> " + message + RESET;
+		}
+	}
 }
 
 bool	Channel::chanEmpty() const

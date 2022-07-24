@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
+#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/22 15:43:25 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/24 15:21:35 by asebrech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = clang++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = a.out 
+NAME = ircserv 
 SRC =	main.cpp \
 		Server.cpp \
 		Client.cpp \
@@ -32,6 +31,12 @@ SRC =	main.cpp \
 		away.cpp \
 		notice.cpp \
 
+ifdef VERBOSEOFF
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=0
+else
+	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=1
+endif
+
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
@@ -39,8 +44,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o : %.c
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+verboseOff :
+	@make VERBOSEOFF=1 all
 
 clean :
 	@rm -rf $(OBJ)
@@ -50,4 +55,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re verboseOff

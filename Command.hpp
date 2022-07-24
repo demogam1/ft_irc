@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:43:38 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 17:12:07 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ class	Command
 			void	away(std::vector<std::string> msg, Client & client);
 
 			void	notice(std::vector<std::string> msg, Client & client);
+
+			void	welcomeMsg(Client & client);
 	private :
 			std::string	password;
 			std::list<Client> & clients;

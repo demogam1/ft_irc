@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 15:45:28 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/24 10:51:14 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 Client::Client(int sd, char * IP, uint32_t port) : socket(sd), IP(IP), port(port),
 				buffer(), nick("*"), pass(""), user("*"), mode("*"), unused("*"), realname("*"),
-				nicked(false), usered(false), registered(false), beDeleted(false), Operator(false) {}
+				connected(true), nicked(false), usered(false), registered(false), beDeleted(false),
+				Operator(false) {}
 
 Client::~Client() {}
 
@@ -45,6 +46,9 @@ void	Client::setUnused(std::string const & val) { unused = val; }
 
 std::string const & Client::getRealname() const  { return(realname); }
 void	Client::setRealname(std::string const & val) { realname = val; }
+
+bool	Client::getConnected() const { return(connected); }
+void	Client::setConnected(bool val) { connected = val; }
 
 bool	Client::getNicked() const { return(nicked); }
 void	Client::setNicked(bool val) { nicked = val; }

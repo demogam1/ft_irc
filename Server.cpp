@@ -6,11 +6,17 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 18:00:17 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:43:41 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
+
+Server::Server(int port, std::string const & pass) : port(port), pass(pass), command(pass, clients, IP)
+{
+	myhostname();
+	command.setIP(IP);
+}
 
 Server::Server() : port(4242), pass(""), command(pass, clients, IP)
 {
@@ -49,12 +55,14 @@ void	Server::init()
 
 	if (bind(master_socket, (struct sockaddr *)&address, sizeof(address))<0)  
 		throw std::runtime_error("bind failed");
-	std::cout << "Listener on port " << port << " pass is " << pass << std::endl;
+	if (VERBOSE)
+		std::cout << MAGENTA + UNDER + "Listener on port " << port << " pass is " << pass << RESET << std::endl;
 
 	if (listen(master_socket, 3) < 0)  
 		throw std::runtime_error("listen");
 	addrlen = sizeof(address);
-	std::cout << "Waiting for connections ..." << std::endl;
+	if (VERBOSE)
+		std::cout << MAGENTA + UNDER + "Waiting for connections ..." + RESET << std::endl << std::endl;
 }
 
 void	Server::run()
@@ -87,7 +95,8 @@ void	Server::run()
 			if ((ret = accept(master_socket, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)  
 				throw std::runtime_error("accept");
 			Client	client(ret, inet_ntoa(address.sin_addr), ntohs(address.sin_port));
-			std::cout << "New connection, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+			if (VERBOSE)
+				std::cout << UNDER + "New connection, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << RESET << std::endl;
 			clients.push_back(client);
 		}
 		for (it = clients.begin(); it != clients.end(); it++)
@@ -96,7 +105,10 @@ void	Server::run()
 			if (FD_ISSET(sd, &readfds))
 			{
 				if ((ret = recv(sd, (void*)buffer, 1024, 0)) == 0)
+				{
+					it->setConnected(false);
 					it->getBuff().assign("QUIT :Remote host closed the connection\r\n");
+				}
 				else
 				{
 					buffer[ret] = '\0';
@@ -104,8 +116,11 @@ void	Server::run()
 				}
 				if (it->getBuff()[it->getBuff().length() - 1] == '\n')
 				{
-					std::cout << "Command received, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
-					std::cout << it->getBuff();
+					if (VERBOSE)
+					{
+						std::cout << "Command received, socket fd : " << it->getSocket() << ", IP : " << it->getIP() << ", port : " << it->getPort() << std::endl;
+						std::cout << BLUE + "<< " + it->getBuff() + RESET;
+					}
 					command.parsCmd(*it);
 					it->getBuff().clear();
 				}

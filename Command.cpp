@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 16:55:54 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:24:54 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	Command::sendMsg(Client const & client, std::string nb, std::string opt, st
 	else
 		message += " " + nb + " " + client.getNick() + " " + msg + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
+	if (VERBOSE)
+	{
+		std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+		std::cout << GREEN + ">> " + message + RESET;
+	}
 }
 
 void    Command::sendConfirm(Client const & client, std::string const & cmd, std::string const & opt)
@@ -50,6 +55,11 @@ void    Command::sendConfirm(Client const & client, std::string const & cmd, std
 	else
 		message += " " + cmd + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
+	if (VERBOSE)
+	{
+		std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+		std::cout << GREEN + ">> " + message + RESET;
+	}
 }
 
 void    Command::sendConfirmTo(Client const & client, Client const & terminator, std::string const & cmd, std::string const & opt)
@@ -60,6 +70,11 @@ void    Command::sendConfirmTo(Client const & client, Client const & terminator,
 	else
 		message += " " + cmd + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
+	if (VERBOSE)
+	{
+		std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+		std::cout << GREEN + ">> " + message + RESET;
+	}
 }
 
 void    Command::sendError(Client const & client, std::string const & arg, std::string const & opt)
@@ -67,13 +82,23 @@ void    Command::sendError(Client const & client, std::string const & arg, std::
 	std::string message("ERROR");
 	message += " :" + arg + ": " + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
+	if (VERBOSE)
+	{
+		std::cout <<"Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+		std::cout << YELLOW + ">> " + message + RESET;
+	}
 }
 
-void    Command::sendSpecConfirm(Client const & client,std::string const & prefix, std::string const & cmd, std::string const & opt)
+void    Command::sendSpecConfirm(Client const & client, std::string const & prefix, std::string const & cmd, std::string const & opt)
 {
 	std::string message(":" + prefix);
 	message += " " + cmd + " " + prefix + " :" + opt + "\r\n";
 	send(client.getSocket(), message.c_str(), message.length(), 0);
+	if (VERBOSE)
+	{
+		std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+		std::cout << GREEN + ">> " + message + RESET;
+	}
 }
 
 bool	Command::isSpecial(char c) const
@@ -151,6 +176,7 @@ void	Command::registerClient(Client & client)
 		}
 		client.setRegistered(true);
 		sendMsg(client, "001", "", RPL_WELCOME); 
+		welcomeMsg(client);
 	}
 }
 
@@ -170,4 +196,37 @@ std::vector<std::string>    Command::splitChan(std::string const & s, std::strin
 	if (!substring.empty())
 		output.push_back(substring);
 	return output;
+}
+
+void	Command::welcomeMsg(Client & client)
+{
+	std::vector<std::string>	welcomes;
+	welcomes.push_back(MAGENTA + "          _____                _____                            _____                    _____                    _____          " + RESET);
+	welcomes.push_back(MAGENTA + "         /\\    \\              /\\    \\                          /\\    \\                  /\\    \\                  /\\    \\         " + RESET);
+	welcomes.push_back(MAGENTA + "        /::\\    \\            /::\\    \\                        /::\\    \\                /::\\    \\                /::\\    \\        " + RESET);
+	welcomes.push_back(MAGENTA + "       /::::\\    \\           \\:::\\    \\                       \\:::\\    \\              /::::\\    \\              /::::\\    \\       " + RESET);
+	welcomes.push_back(MAGENTA + "      /::::::\\    \\           \\:::\\    \\                       \\:::\\    \\            /::::::\\    \\            /::::::\\    \\      " + RESET);
+	welcomes.push_back(MAGENTA + "     /:::/\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\     " + RESET);
+	welcomes.push_back(MAGENTA + "    /:::/__\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\    " + RESET);
+	welcomes.push_back(MAGENTA + "   /::::\\   \\:::\\    \\          /::::\\    \\                      /::::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\   " + RESET);
+	welcomes.push_back(MAGENTA + "  /::::::\\   \\:::\\    \\        /::::::\\    \\            ____    /::::::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\  " + RESET);
+	welcomes.push_back(MAGENTA + " /:::/\\:::\\   \\:::\\    \\      /:::/\\:::\\    \\          /\\   \\  /:::/\\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  /:::/    /   \\:::\\    \\ " + RESET);
+	welcomes.push_back(MAGENTA + "/:::/  \\:::\\   \\:::\\____\\    /:::/  \\:::\\____\\        /::\\   \\/:::/  \\:::\\____\\/:::/  \\:::\\   \\:::|    |/:::/____/     \\:::\\____\\" + RESET);
+	welcomes.push_back(MAGENTA + "\\::/    \\:::\\   \\::/    /   /:::/    \\::/    /        \\:::\\  /:::/    \\::/    /\\::/   |::::\\  /:::|____|\\:::\\    \\      \\::/    /" + RESET);
+	welcomes.push_back(MAGENTA + " \\/____/ \\:::\\   \\/____/   /:::/    / \\/____/          \\:::\\/:::/    / \\/____/  \\/____|:::::\\/:::/    /  \\:::\\    \\      \\/____/ " + RESET);
+	welcomes.push_back(MAGENTA + "          \\:::\\    \\      /:::/    /                    \\::::::/    /                 |:::::::::/    /    \\:::\\    \\             " + RESET);
+	welcomes.push_back(MAGENTA + "           \\:::\\____\\    /:::/    /                      \\::::/____/                  |::|\\::::/    /      \\:::\\    \\            " + RESET);
+	welcomes.push_back(MAGENTA + "            \\::/    /    \\::/    /                        \\:::\\    \\                  |::| \\::/____/        \\:::\\    \\           " + RESET);
+	welcomes.push_back(MAGENTA + "             \\/____/      \\/____/                          \\:::\\    \\                 |::|  ~|               \\:::\\    \\          " + RESET);
+	welcomes.push_back(MAGENTA + "                                                            \\:::\\    \\                |::|   |                \\:::\\    \\         " + RESET);
+	welcomes.push_back(MAGENTA + "                                                             \\:::\\____\\               \\::|   |                 \\:::\\____\\        " + RESET);
+	welcomes.push_back(MAGENTA + "                                                              \\::/    /                \\:|   |                  \\::/    /        " + RESET);
+	welcomes.push_back(MAGENTA + "                                                               \\/____/                  \\|___|                   \\/____/         " + RESET);
+	welcomes.push_back(MAGENTA + "                                                                                                                                 " + RESET);
+
+	std::vector<std::string>::iterator	it = welcomes.begin();
+	for(; it != welcomes.end(); it++)
+	{
+		sendMsg(client, "372", "", *it); 
+	}
 }

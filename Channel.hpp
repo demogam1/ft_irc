@@ -6,12 +6,14 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 16:28:01 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:39:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHANNEL_HPP
 # define CHANNEL_HPP
+
+# include <iostream>
 
 # include "Client.hpp"
 # include "define.hpp"
