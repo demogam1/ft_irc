@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/22 15:48:24 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:15:46 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         {
             if (it->getAway().first == true)
                 sendMsg(client, "301", it->getNick() ,it->getAway().second);
+            if (cmds[2][0] == ':')
+                cmds[2].erase(0, 1);
             sendConfirmTo(*it, client, cmds[0] + " " + cmds[1], cmds[2]);
             return;
         }

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/24 21:28:28 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/25 14:35:25 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                     if(client.getOperator() == true)
                     {
                         client.setOperator(false);
-                        sendSpecConfirm(client , IP, cmds[0], cmds[1]);
+                        sendSpecConfirm(client , client.getNick(), cmds[0], cmds[2]);
                     }
                 }
             }
