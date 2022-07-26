@@ -6,13 +6,13 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:57:42 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:09:05 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Channel.hpp"
 
-Channel::Channel() : password("") {}
+Channel::Channel() : invite(false), topic(""), password("") {}
 
 Channel::~Channel() {}
 
@@ -94,6 +94,14 @@ bool Channel::chanEmpty() const
 {
 	return (clients.empty() && chanOp.empty());
 }
+
+bool Channel::getInvite() { return (invite); }
+
+void Channel::setInvite(bool set) { invite = set; }
+
+std::string const & Channel::getTopic() { return (topic); }
+
+void Channel::setTopic(std::string const & val) { topic = val }
 
 void Channel::setPassword(std::string const &str) { password = str; }
 

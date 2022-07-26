@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:57:11 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:06:40 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class	Channel
 			void 	setInvite(bool set);
 
 			std::string	const & getTopic();
-			void 	setTopic(std::string const & topic);
+			void 	setTopic(std::string const & val);
 
 			bool	chanEmpty() const;
 
