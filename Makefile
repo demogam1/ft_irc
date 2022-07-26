@@ -6,7 +6,7 @@
 #    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/26 15:33:04 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/26 16:16:03 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC =	main.cpp \
 		privmsg.cpp \
 		away.cpp \
 		notice.cpp \
-		invite.cpp \	
+		invite.cpp	
 
 ifdef VERBOSEOFF
 	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=0

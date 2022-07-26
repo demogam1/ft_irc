@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:34 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/26 15:34:36 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:15:43 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void    Command::invite(std::vector<std::string> cmds, Client & client)
 {
-    
+    (void) cmds;
+    (void) client;
 }
