@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/26 16:12:26 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 17:19:43 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,40 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                             sign = '+';
                         else if (cmds[2][i] == 'o')
                         {
-                            if (sign == '-')
-                            {    
-                               
-                               return;
-                            }
-                            if (sign == '+')
+                            if (cmds.size() < 4)
                             {
-                                std::cout << "you are now the operator in this channel\n";
+                                sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
+                                return;
+                            }
+                            std::list<Client>::iterator	it = clients.begin();
+                            for (; it != clients.end(); it++)
+                                if (cmds[3] == it->getNick())
+                                    break;
+                            if (it == clients.end())
+                            {
+                                sendMsg(client, "401", "", ERR_NOSUCHNICK);
+                                return;
+                            }
+                            if (it->isInChan(cmds[1]) == true)
+                            {                                
+                                if (sign == '-')
+                                {
+                                    if (itMap->second.isChanOp(*it) == true)
+                                    {
+                                        itMap->second.deleteChanOp(&(*it));
+                                        sendSpecConfirm(client , client.getNick() + IP, cmds[0], cmds[2]);
+                                    }
+                                    return;
+                                }
+                                if (sign == '+')
+                                {
+                                    itMap->second.addChanOp(&(*it));                                    
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                sendMsg(client, "441", client.getNick() + " " +  cmds[3] + " " + cmds[1], ERR_USERNOTINCHANNEL);
                                 return;
                             }
                         }

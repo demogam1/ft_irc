@@ -23,13 +23,24 @@ A VOIR
 ----------------
 MODE CHANNEL:
 
-REMOVE OPERATOR ROLE OF A CHANNEL FROM MY OWN CHANNEL
- input cmd --> mode #terre -o tata
- response from  server -->  :tata!~a@62.129.8.171 MODE #terre -o tata
+o : removing operator
+{
+    [MODE] {CHANNEL} {COMMANDE} {TARGET NICK}
+       1      2            3           4 
 
-GIVING OPERATOR ROLE OF A CHANNEL WHICH HIS NOT MINE
- input cmd --> mode #terre +o tata
- response from server -->  :tantalum.libera.chat 482 tata #terre :You're not a channel operator
+    REMOVE OPERATOR ROLE OF A CHANNEL FROM MY OWN CHANNEL
+    input cmd --> mode #terre -o tata
+    response from  server -->  :tata!~a@62.129.8.171 MODE #terre -o tata
+
+    GIVING OPERATOR ROLE OF A CHANNEL WHICH HIS NOT MINE
+    input cmd --> mode #terre +o tata
+    response from server -->  :tantalum.libera.chat 482 tata #terre :You're not a channel operator
+
+    GIVING OPERATOR ROLE TO SOMEONE WHO ISNT IN THE CHANNEL
+    input --> mode #blabla +o test
+    response from server --> :sodium.libera.chat 441 tata test #blabla :They aren't on that channel
+}
+
 
 ---------------
 COMMANDE CHANNEL:

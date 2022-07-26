@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:33:07 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:33:36 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 		{
 			if (!client.isInChan(*it))
 			{
-				if ((!itMap->second.getPassword().empty() && itKey == keys.end()) || itMap->second.getPassword() != *itKey)
+				if (!itMap->second.getPassword().empty() && (itKey == keys.end() || itMap->second.getPassword() != *itKey))
 				{
 					sendMsg(client, "475", cmds[0],  *it + ERR_BADCHANNELKEY);
 				}

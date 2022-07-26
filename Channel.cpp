@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 16:13:21 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 17:04:08 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void Channel::deleteClient(Client *client)
 			return;
 		}
 	}
+	for (it = chanOp.begin(); it != chanOp.end(); it++)
+	{
+		if (client == *it)
+		{
+			chanOp.erase(it);
+			return;
+		}
+	}
+}
+
+void Channel::deleteChanOp(Client *client)
+{
+	std::vector<Client *>::iterator it;
 	for (it = chanOp.begin(); it != chanOp.end(); it++)
 	{
 		if (client == *it)

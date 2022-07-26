@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:56:49 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:58:53 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define ERR_NOTEXTTOSEND ":No text to send"
 # define ERR_CANNOTSENDTOCHAN ":Cannot send to channel"
 # define ERR_CHANOPRIVSNEEDED ":You're not channel operator"
+# define ERR_USERNOTINCHANNEL ":They aren't on that channel"
+
 
 # define RED	std::string("\e[31m")
 # define GREEN	std::string("\e[32m")
