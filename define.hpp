@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 17:39:12 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:59:26 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
 # define ERR_NOTONCHANNEL " :You're not on that channel"
+# define ERR_BADCHANNELKEY " :Cannot join channel (+k)"
 # define ERR_UNKNOWNCOMMAND ":Unknown command"
 # define ERR_NONICKNAMEGIVEN ":No nickname given"
 # define ERR_NICKNAMEINUSE ":Nickname is already in use"

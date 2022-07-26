@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 20:45:59 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 15:35:52 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "define.hpp"
 
 # include <vector> 
-
 # include <iostream>
+# include <string>
 
 # include <sys/socket.h> 
 
@@ -43,10 +43,14 @@ class	Channel
 
 			bool	chanEmpty() const;
 
+			void	setPassword(std::string const & str);
+
+			std::string const & getPassword(void) const;
 	private:
 
 			std::vector<Client *>	clients;
 			std::vector<Client *>	chanOp;
+			std::string	password;
 };
 
 #endif
