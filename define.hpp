@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 17:39:12 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:27:41 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define ERR_NORECIPIENT ":No recipient given (PRIVMSG)"
 # define ERR_NOTEXTTOSEND ":No text to send"
 # define ERR_CANNOTSENDTOCHAN ":Cannot send to channel"
+# define ERR_CHANOPRIVSNEEDED ":You're not channel operator"
 
 # define RED	std::string("\e[31m")
 # define GREEN	std::string("\e[32m")

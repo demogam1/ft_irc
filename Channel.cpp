@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 21:28:57 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 15:53:23 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,3 +95,4 @@ bool	Channel::chanEmpty() const
 {
 	return (clients.empty() && chanOp.empty());
 }
+

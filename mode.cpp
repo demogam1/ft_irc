@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/25 14:35:25 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 15:32:06 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void Command::mode(std::vector<std::string> cmds, Client & client)
 {
+    int error_nbr = 0;
+    int sign = '+';
     if (!client.getRegistered())
     {
         sendMsg(client, "451", "", ERR_NOTREGISTERED);
@@ -31,8 +33,6 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
             sendMsg(client, "502", "", ERR_USERSDONTMATCH);
             return;
         }
-        int sign = '+';
-        int error_nbr = 0;
         for (size_t i = 0;i < cmds[2].length(); i++)
         {
             if (cmds[2][i] == '-')
@@ -50,7 +50,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                     }
                 }
             }
-            else if (error_nbr == 0 && cmds[2][i] != 'o')
+            else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a')
             {
                 sendMsg(client, "501", "", ERR_UMODEUNKNOWNFLAG);
                 error_nbr++;
@@ -62,31 +62,90 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
         std::map<std::string, Channel>::iterator	itMap;
         if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
         {
-            std::cout << "le channel existe\n";
             if (client.isInChan(cmds[1]) == true)
             {
-                std::cout << "le client est dans le channel\n";
                 if(itMap->second.isChanOp(client) == true)
                 {
-                    std::cout << "le client est op dans le channel" << std::endl ;
-                    return;
+                    for (size_t i = 0;i < cmds[2].length(); i++)
+                    {    
+                        if (cmds[2][i] == '-')
+                            sign = '-';
+                        else if (cmds[2][i] == '+')
+                            sign = '+';
+                        else if (cmds[2][i] == 'o')
+                        {
+                            if (sign == '-')
+                            {    
+                               std::cout << "removed from being an operator in this channel\n";
+                               return;
+                            }
+                            if (sign == '+')
+                            {
+                                std::cout << "you are now the operator in this channel\n";
+                                return;
+                            }
+                        }
+                        else if (cmds[2][i] == 'i')
+                        {
+                            if (sign == '-')
+                            {
+                                std::cout << "the invitation mode is set off\n";
+                                return;
+                            }
+                            if (sign == '+')
+                            {
+                                std::cout << "the inviation mode is set on";
+                                return; 
+                            }
+                        }
+                        else if (cmds[2][i] == 't')
+                        {
+                            if (sign == '-')
+                            {
+                               std::cout << "the topic in this channel has been removed\n";
+                               return; 
+                            }
+                            if (sign == '+')
+                            {
+                                std::cout << "the topic in this channel has been set\n";
+                                return;
+                            }
+                        }
+                        else if (cmds[2][i] == 'k')
+                        {
+                            if (sign == '-')
+                            {
+                               std::cout << "the password has been removed\n";
+                               return; 
+                            }
+                            if (sign == '+')
+                            {
+                                std::cout << "the password has been set\n";
+                                return;
+                            }
+                        }
+                        else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a')
+                        {
+                            sendMsg(client, "501", "", ERR_UMODEUNKNOWNFLAG);
+                            error_nbr++;
+                        }
+                    }
                 }
                 else
                 {
-                    std::cout << "le client n est pas op dans le channel" << std::endl;
+                    sendMsg(client, "482", cmds[1], ERR_CHANOPRIVSNEEDED);
                     return;
                 }
-                return;
             }
             else if (client.isInChan(cmds[1]) == false)
             {
-                std::cout << "le client n est pas dans le channel\n";
+                sendMsg(client, "482", cmds[1], ERR_CHANOPRIVSNEEDED);
                 return;
             }
         }
         else
         {
-            std::cout << "le channel n existe pas\n";
+            sendMsg(client, "482", cmds[1], ERR_CHANOPRIVSNEEDED);
             return;
         }
     }

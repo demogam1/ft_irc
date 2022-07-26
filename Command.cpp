@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 17:24:54 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:34:00 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("PRIVMSG")] = &Command::privatmsg;
 	cmdMap[std::string("AWAY")] = &Command::away;
 	cmdMap[std::string("NOTICE")] = &Command::notice;
+	cmdMap[std::string("INVITE")] = &Command::invite;
 }
 
 Command::~Command() {}
