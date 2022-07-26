@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:51:07 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 15:57:11 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "define.hpp"
 
 # include <vector> 
-
 # include <iostream>
+# include <string>
 
 # include <sys/socket.h> 
 
@@ -49,12 +49,16 @@ class	Channel
 
 			bool	chanEmpty() const;
 
+			void	setPassword(std::string const & str);
+
+			std::string const & getPassword(void) const;
 	private:
 
 			std::vector<Client *>	clients;
 			std::vector<Client *>	chanOp;
 			bool	invite;
 			std::string	topic;
+			std::string	password;
 };
 
 #endif
