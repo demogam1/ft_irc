@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/26 15:32:06 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:12:26 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                         {
                             if (sign == '-')
                             {    
-                               std::cout << "removed from being an operator in this channel\n";
+                               
                                return;
                             }
                             if (sign == '+')
