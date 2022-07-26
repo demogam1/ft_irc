@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 17:33:36 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 18:08:12 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,17 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 				{
 					sendMsg(client, "475", cmds[0],  *it + ERR_BADCHANNELKEY);
 				}
+				else if (itMap->second.getInvite() && !itMap->second.isInvited(client))
+				{
+					sendMsg(client, "473", cmds[0],  *it + ERR_INVITEONLYCHAN);
+				}
 				else
 				{
 					itMap->second.addClient(&client);
 					client.getChannels().push_back(*it);
 					sendConfirm(client, cmds[0] + " " + *it, "");
+					if (!itMap->second.getTopic().empty())
+						sendMsg(client, "332", *it, itMap->second.getTopic());
 					itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 				}
 			}
