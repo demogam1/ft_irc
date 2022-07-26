@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 16:06:40 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:42:28 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ class	Channel
 
 			void	deleteClient(Client * client);
 
+			void	addInvited(Client * client);
+
+			void	deleteInvited(Client * Client);
+
+			bool	isInvited(Client & client) const;
+
 			void    sendConfirmChan(Client const & client, std::string const & cmd, std::string const & opt);
 
 			bool	isChanOp(Client const & client);
@@ -56,6 +62,7 @@ class	Channel
 
 			std::vector<Client *>	clients;
 			std::vector<Client *>	chanOp;
+			std::vector<Client *>	invited;
 			bool	invite;
 			std::string	topic;
 			std::string	password;

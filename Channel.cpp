@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 16:13:21 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/26 16:41:55 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,34 @@ void Channel::deleteClient(Client *client)
 	}
 }
 
-void Channel::sendConfirmChan(Client const &client, std::string const &cmd, std::string const &opt)
+void	Channel::addInvited(Client *client)
+{
+	invited.push_back(client);
+}
+
+void	Channel::deleteInvited(Client * client)
+{
+	std::vector<Client *>::iterator it;
+	for (it = invited.begin(); it != invited.end(); it++)
+	{
+		if (client == *it)
+		{
+			invited.erase(it);
+			return;
+		}
+	}
+}
+
+bool	Channel::isInvited(Client & client) const
+{
+	std::vector<Client *>::const_iterator it = invited.begin();
+	for (; it != invited.end(); it++)
+		if (*it == &client)
+			return true;
+	return false;
+}
+
+void	Channel::sendConfirmChan(Client const &client, std::string const &cmd, std::string const &opt)
 {
 	std::string message(":" + CLIENT);
 	if (opt.empty())
