@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/28 15:41:39 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/30 13:34:42 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 			{
 				if (!itMap->second.getPassword().empty() && (itKey == keys.end() || itMap->second.getPassword() != *itKey))
 				{
-					sendMsg(client, "475", cmds[0],  *it + ERR_BADCHANNELKEY);
+					sendMsg(client, "475", *it + ERR_BADCHANNELKEY, "");
 				}
 				else if (itMap->second.getInvite() && !itMap->second.isInvited(client))
 				{
-					sendMsg(client, "473", cmds[0],  *it + ERR_INVITEONLYCHAN);
+					sendMsg(client, "473", *it + ERR_INVITEONLYCHAN, "");
 				}
 				else
 				{
