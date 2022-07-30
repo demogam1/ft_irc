@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 18:08:12 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/28 15:41:39 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 					client.getChannels().push_back(*it);
 					sendConfirm(client, cmds[0] + " " + *it, "");
 					if (!itMap->second.getTopic().empty())
+					{
 						sendMsg(client, "332", *it, itMap->second.getTopic());
+						sendMsg(client, "333", *it, itMap->second.getTopicAuthor());
+					}
 					itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 				}
 			}

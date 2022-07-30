@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:34:00 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:53:04 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 {
 	cmdMap[std::string("NICK")] = &Command::nick;
 	cmdMap[std::string("USER")] = &Command::user; 
-	cmdMap[std::string("PASS")] = &Command::pass; 
+	cmdMap[std::string("PASS")] = &Command::pass;
 	cmdMap[std::string("QUIT")] = &Command::quit;
 	cmdMap[std::string("OPER")] = &Command::oper;
 	cmdMap[std::string("MODE")] = &Command::mode;
@@ -29,6 +29,8 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("AWAY")] = &Command::away;
 	cmdMap[std::string("NOTICE")] = &Command::notice;
 	cmdMap[std::string("INVITE")] = &Command::invite;
+	cmdMap[std::string("TOPIC")] = &Command::topic;
+	cmdMap[std::string("NAMES")] = &Command::names;
 }
 
 Command::~Command() {}
@@ -230,4 +232,19 @@ void	Command::welcomeMsg(Client & client)
 	{
 		sendMsg(client, "372", "", *it); 
 	}
+}
+
+void	Command::sendChan(Client const & client, std::string nb, std::string opt, std::string msg)
+{
+	std::string	message(":" + IP);
+	if (!opt.empty())
+		message += " " + nb + " " + client.getNick() + " " + opt + " " + msg + "\r\n";
+	else
+		message += " " + nb + " " + client.getNick() + " " + msg + "\r\n";
+	send(client.getSocket(), message.c_str(), message.length(), 0);
+	// if (VERBOSE)
+	// {
+	// 	std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
+	// 	std::cout << GREEN + ">> " + message + RESET;
+	// }
 }

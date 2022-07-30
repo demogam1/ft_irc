@@ -7,7 +7,7 @@ MODE CHANNEL
  k : password 
 
 COMMANDE CHANNEL 
- [TOPIC]
+ [TOPIC] 
  [NAMES]
  [LIST]
  [INVIT]
@@ -41,11 +41,32 @@ o : removing operator
     response from server --> :sodium.libera.chat 441 tata test #blabla :They aren't on that channel
 }
 
+i : giving invite
+{
+    [MODE] {CHANNEL} {COMMANDE} {ignored}
+    
+    SETTING THE CHANNEL ON INVITED MODE ONLY
+    input --> mode #blabla +i
+    response from server --> :tata!~a@62.129.8.171 MODE #blabla +i 
+
+    REMOVING INVITED MODE ONLY ON THE CHANNEL
+    input --> mode #blabla -i
+    response from server --> :tata!~a@62.129.8.171 MODE #blabla -i
+}
+
+t :setting topic in channel
+{
+    [MODE] {CHANNEL} {COMMANDE} {ignored}
+
+    input --> mode #ref -t
+    response from server --> :tata!~a@62.129.8.171 MODE #ref -t
+
+    input --> mode #ref +t
+    response from server --> :tata!~a@62.129.8.171 MODE #ref +t
+}
 
 ---------------
 COMMANDE CHANNEL:
-
-nick titi
 
 [INVITE] {NICK} {CHANNEL}
 inpute --> invite 
@@ -59,4 +80,12 @@ response --> :sodium.libera.chat 401 titi #test :No such nick/channel
 
 input --> invite titi #test
 respone --> :sodium.libera.chat 442 titi #test :You're not on that channel
+
+[TOPIC] {CHANNEL} {TOPIC NAME}
+
+:tantalum.libera.chat 332 titi #ref :salut
+:tantalum.libera.chat 333 titi #ref tata!~a@62.129.8.171 1658943200
+
+
+----------------
 

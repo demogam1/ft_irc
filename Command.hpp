@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 15:33:52 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:44:27 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ class	Command
 			void	welcomeMsg(Client & client);
 
 			void	invite(std::vector<std::string> cmds, Client & client);
+
+			void	topic(std::vector<std::string> cmds, Client & client);
+
+			void	names(std::vector<std::string> cmds, Client & client);
+
+			void	sendChan(Client const & client, std::string nb, std::string opt, std::string msg);
+
 	private :
 			std::string	password;
 			std::list<Client> & clients;

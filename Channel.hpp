@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 18:06:14 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/30 12:34:12 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <vector> 
 # include <iostream>
 # include <string>
+# include <ctime>
+
 
 # include <sys/socket.h> 
 
@@ -52,7 +54,10 @@ class	Channel
 			void 	setInvite(bool set);
 
 			std::string	const & getTopic();
-			void 	setTopic(std::string const & val);
+			void 	setTopic(std::string const & val, Client & client);
+			
+			void	enableTopic(bool val);
+			bool	getEnableTopic();
 
 			bool	chanEmpty() const;
 
@@ -60,12 +65,16 @@ class	Channel
 
 			std::string const & getPassword(void) const;
 
+			std::string getTopicAuthor();
+
 	private:
 
 			std::vector<Client *>	clients;
 			std::vector<Client *>	chanOp;
 			std::vector<Client *>	invited;
-			bool	invite;
+			bool		invite;
+			bool		topicEnabled;
+			std::string topicAuthor;
 			std::string	topic;
 			std::string	password;
 };

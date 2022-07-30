@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/26 17:19:43 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/30 12:16:21 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,23 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                     if (itMap->second.isChanOp(*it) == true)
                                     {
                                         itMap->second.deleteChanOp(&(*it));
-                                        sendSpecConfirm(client , client.getNick() + IP, cmds[0], cmds[2]);
+                                        sendSpecConfirm(client , client.getNick(), cmds[0], cmds[2]);
                                     }
                                     return;
                                 }
                                 if (sign == '+')
                                 {
-                                    itMap->second.addChanOp(&(*it));                                    
+                                    if (itMap->second.isChanOp(*it) == false)
+                                    {
+                                        itMap->second.addChanOp(&(*it));                                
+                                        sendSpecConfirm(client , client.getNick(), cmds[0], cmds[2]);
+                                    }
                                     return;
                                 }
                             }
                             else
                             {
-                                sendMsg(client, "441", client.getNick() + " " +  cmds[3] + " " + cmds[1], ERR_USERNOTINCHANNEL);
+                                sendMsg(client, "442", client.getNick() + " " +  cmds[3] + " " + cmds[1], ERR_USERNOTINCHANNEL);
                                 return;
                             }
                         }
@@ -115,25 +119,41 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                         {
                             if (sign == '-')
                             {
-                                std::cout << "the invitation mode is set off\n";
+                                if (itMap->second.getInvite() == true)
+                                {
+                                    itMap->second.setInvite(false);
+                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                }
                                 return;
                             }
                             if (sign == '+')
-                            {
-                                std::cout << "the inviation mode is set on";
-                                return; 
+                            {                                
+                                if (itMap->second.getInvite() == false)
+                                {
+                                    itMap->second.setInvite(true);
+                                    sendConfirm(client , cmds[0]  + " " + cmds[1] + " " + cmds[2], "");
+                                }
+                                return;
                             }
                         }
                         else if (cmds[2][i] == 't')
                         {
                             if (sign == '-')
                             {
-                               std::cout << "the topic in this channel has been removed\n";
-                               return; 
+                                if (itMap->second.getEnableTopic() == true)
+                                {
+                                    itMap->second.enableTopic(false);
+                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                }
+                                return;
                             }
                             if (sign == '+')
                             {
-                                std::cout << "the topic in this channel has been set\n";
+                                if (itMap->second.getEnableTopic() == false)
+                                {
+                                    itMap->second.enableTopic(true);
+                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                }
                                 return;
                             }
                         }
@@ -141,16 +161,24 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                         {
                             if (sign == '-')
                             {
-                               std::cout << "the password has been removed\n";
-                               return; 
+                                if (cmds.size() == 4 && cmds[3] == itMap->second.getPassword())
+                                {
+                                    itMap->second.setPassword("");
+                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2] + " *", "");
+                                }
+                                return; 
                             }
                             if (sign == '+')
                             {
-                                std::cout << "the password has been set\n";
+                                if (cmds.size() == 4)
+                                {
+                                    itMap->second.setPassword(cmds[3]);
+                                    sendConfirm(client , cmds[0]  + " " + cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+                                }
                                 return;
                             }
                         }
-                        else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a')
+                        else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a' && cmds[2][i] != 't')
                         {
                             sendMsg(client, "501", "", ERR_UMODEUNKNOWNFLAG);
                             error_nbr++;

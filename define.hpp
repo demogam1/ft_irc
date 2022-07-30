@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 18:06:18 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/27 18:57:02 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define ERR_CANNOTSENDTOCHAN ":Cannot send to channel"
 # define ERR_CHANOPRIVSNEEDED ":You're not channel operator"
 # define ERR_USERNOTINCHANNEL ":They aren't on that channel"
+# define RPL_NOTOPIC ":No topic is set"
 
 
 # define RED	std::string("\e[31m")
