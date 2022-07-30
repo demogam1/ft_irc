@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/28 18:32:15 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/30 12:59:23 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         }
         else
         {
-            sendMsg(client, "404", cmds[1], ERR_NOSUCHNICK);
+            sendMsg(client, "401", cmds[1], ERR_NOSUCHNICK);
             return;
         }
     }
