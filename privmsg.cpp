@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/25 14:15:46 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/27 17:02:50 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         }
         else
         {
-            sendMsg(client, "404", cmds[1], ERR_NOSUCHNICK);
+            sendMsg(client, "401", cmds[1], ERR_NOSUCHNICK);
             return;
         }
     }

@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/26 18:06:18 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/30 13:05:13 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
 # define ERR_NOTONCHANNEL " :You're not on that channel"
+# define ERR_USERONCHANNEL " :is already on channel"
 # define ERR_INVITEONLYCHAN " :Cannot join channel (+i)"
 # define ERR_BADCHANNELKEY " :Cannot join channel (+k)"
 # define ERR_UNKNOWNCOMMAND ":Unknown command"
