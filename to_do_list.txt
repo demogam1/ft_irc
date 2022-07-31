@@ -91,9 +91,5 @@ respone --> :sodium.libera.chat 442 titi #test :You're not on that channel
 ----------------
 ERRORS:
 
- invite commande message errors
-
- mode #ref invite <---- response seems to be wrong with this input
-
  Si msg depasse 512 -> error
 
