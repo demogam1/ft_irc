@@ -6,72 +6,50 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:01:30 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/30 16:50:31 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:31:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <netdb.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#define MAX 80
-#define PORT 4242
-#define SA struct sockaddr
-void func(int sockfd)
+#include "Bot.hpp"
+
+Bot::Bot() : port(4242), pass(""), IP("127.0.0.1"), sock(0) {}
+
+Bot::Bot(int port, std::string const & pass, std::string const & IP) : port(port), pass(pass), IP(IP), sock(0) {}
+
+Bot::~Bot() { close(client_fd); }
+
+void	Bot::init()
 {
-	char buff[MAX];
-	int n;
-	for (;;) {
-		bzero(buff, sizeof(buff));
-		printf("Enter the string : ");
-		n = 0;
-		while ((buff[n++] = getchar()) != '\n')
-			;
-		write(sockfd, buff, sizeof(buff));
-		bzero(buff, sizeof(buff));
-		read(sockfd, buff, sizeof(buff));
-		printf("From Server : %s", buff);
-		if ((strncmp(buff, "exit", 4)) == 0) {
-			printf("Client Exit...\n");
-			break;
-		}
-	}
-}
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+		throw std::runtime_error("Socket creation error");
+	
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_port = htons(port);
+	
+	if (inet_pton(AF_INET, IP.c_str(), &serv_addr.sin_addr) <= 0)
+		throw std::runtime_error("Invalid address / Address not supported");
+	
+	if ((client_fd = connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))) < 0)
+		throw std::runtime_error("Connection Failed");
+} 
 
-int main()
+void	Bot::run()
 {
-	int sockfd, connfd;
-	struct sockaddr_in servaddr, cli;
+	std::string	botRegister;
 
-	// socket create and verification
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
-	if (sockfd == -1) {
-		printf("socket creation failed...\n");
-		exit(0);
+	if (!pass.empty())
+		botRegister += "PASS " + pass + "\r\n";
+	
+	botRegister += "NICK bot\r\nUSER autoBot bot * :Auto Bot\r\n";
+
+	send(sock, botRegister.c_str(), botRegister.length(), 0);
+	
+	while((valread = recv(sock, buffer, 1024, 0)))
+	{
+		buffer[valread] = '\0';
+		if (VERBOSE)
+			std::cout << BLUE + "<< " + buffer + RESET;
+		bzero(buffer, valread);
 	}
-	else
-		printf("Socket successfully created..\n");
-	bzero(&servaddr, sizeof(servaddr));
-
-	// assign IP, PORT
-	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
-	servaddr.sin_port = htons(PORT);
-
-	// connect the client socket to server socket
-	if (connect(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0) {
-		printf("connection with the server failed...\n");
-		exit(0);
-	}
-	else
-		printf("connected to the server..\n");
-
-	// function for chat
-	func(sockfd);
-
-	// close the socket
-	close(sockfd);
+	std::cout << YELLOW + "Connection lost" + RESET << std::endl;
 }
