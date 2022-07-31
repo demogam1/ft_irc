@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/30 12:16:21 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/31 15:33:06 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                             sign = '-';
                         else if (cmds[2][i] == '+')
                             sign = '+';
-                        else if (cmds[2][i] == 'o')
+                        else if (cmds[2][i] == 'o' && cmds[2][i + 1] == 0)
                         {
                             if (cmds.size() < 4)
                             {
@@ -115,7 +115,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 return;
                             }
                         }
-                        else if (cmds[2][i] == 'i')
+                        else if (cmds[2][i] == 'i' && cmds[2][i + 1] == 0)
                         {
                             if (sign == '-')
                             {
@@ -136,7 +136,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 return;
                             }
                         }
-                        else if (cmds[2][i] == 't')
+                        else if (cmds[2][i] == 't' && cmds[2][i + 1] == 0)
                         {
                             if (sign == '-')
                             {
@@ -157,7 +157,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 return;
                             }
                         }
-                        else if (cmds[2][i] == 'k')
+                        else if (cmds[2][i] == 'k' && cmds[2][i + 1] == 0)
                         {
                             if (sign == '-')
                             {
