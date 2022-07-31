@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/29 19:53:04 by misaev           ###   ########.fr       */
+/*   Updated: 2022/07/31 14:42:15 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,19 +232,4 @@ void	Command::welcomeMsg(Client & client)
 	{
 		sendMsg(client, "372", "", *it); 
 	}
-}
-
-void	Command::sendChan(Client const & client, std::string nb, std::string opt, std::string msg)
-{
-	std::string	message(":" + IP);
-	if (!opt.empty())
-		message += " " + nb + " " + client.getNick() + " " + opt + " " + msg + "\r\n";
-	else
-		message += " " + nb + " " + client.getNick() + " " + msg + "\r\n";
-	send(client.getSocket(), message.c_str(), message.length(), 0);
-	// if (VERBOSE)
-	// {
-	// 	std::cout << "Command replied, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << std::endl;
-	// 	std::cout << GREEN + ">> " + message + RESET;
-	// }
 }
