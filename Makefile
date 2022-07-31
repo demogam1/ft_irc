@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
+#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/28 17:10:16 by misaev           ###   ########.fr        #
+#    Updated: 2022/07/30 18:40:44 by asebrech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = clang++
+VERBOSE = 1
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=$(VERBOSE)
 NAME = ircserv 
 SRC =	main.cpp \
 		Server.cpp \
@@ -34,28 +36,29 @@ SRC =	main.cpp \
 		topic.cpp \
 		names.cpp \
 
-ifdef VERBOSEOFF
-	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=0
-else
-	CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=1
-endif
-
 OBJ = $(SRC:.cpp=.o)
+
+SRCBOT =	mainBot.cpp \
+			Bot.cpp \
+
+OBJBOT = $(SRCBOT:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-verboseOff :
-	@make VERBOSEOFF=1 all
+bot : $(OBJBOT)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean :
 	@rm -rf $(OBJ)
+	@rm -rf $(OBJBOT)
 
 fclean : clean
 	@rm -rf $(NAME)
+	@rm -rf bot
 
 re : fclean all
 
-.PHONY : all clean fclean re verboseOff
+.PHONY : all clean fclean re

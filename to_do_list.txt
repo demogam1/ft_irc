@@ -89,3 +89,5 @@ respone --> :sodium.libera.chat 442 titi #test :You're not on that channel
 
 ----------------
 
+Si msg depasse 512 -> error
+

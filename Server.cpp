@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 17:43:41 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/07/30 18:14:56 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ Server::Server() : port(4242), pass(""), command(pass, clients, IP)
 
 Server::~Server()
 {
-	myhostname();
-	command.setIP(IP);
 }
 
 void	Server::myhostname()
