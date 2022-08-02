@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:52 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/31 17:51:29 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:01:43 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@
 # include <stdexcept>
 # include <string>
 # include <vector>
+# include <map>
 
 # include "defineBot.hpp"
 
+#define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
+
 class Bot
 {
+	typedef void (Bot::*pfunc)(std::vector<std::string>);
 	public :
 
 			Bot();
@@ -39,9 +43,11 @@ class Bot
 			void	init();
 			void	run();
 
-
-			std::vector<std::string>	splitCmd(std::string const & s, std::string const & seperator);
+			std::vector<std::string>	ft_split(std::string const & s, std::string const & seperator);
 			void	cmdPars(std::string const & str);
+
+			void	command();
+			void	invite(std::vector<std::string> cmds);
 
 	private :
 	
@@ -52,6 +58,8 @@ class Bot
 			int client_fd;
 			struct sockaddr_in serv_addr;
 			std::string	buff;
+			int	isRegistered;
+			std::map<std::string, pfunc>	cmdMap;
 };
 
 #endif

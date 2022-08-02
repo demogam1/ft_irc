@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bot.cpp                                            :+:      :+:    :+:   */
+/*   Bot.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:01:30 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/31 22:35:29 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:58:46 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bot.hpp"
 
-Bot::Bot() : port(4242), pass(""), IP("127.0.0.1"), sock(0) {}
+Bot::Bot() : port(4242), pass(""), IP("127.0.0.1"), sock(0), isRegistered(0) {}
 
-Bot::Bot(int port, std::string const & pass, std::string const & IP) : port(port), pass(pass), IP(IP), sock(0) {}
+Bot::Bot(int port, std::string const & pass, std::string const & IP) : port(port), pass(pass), IP(IP), sock(0), isRegistered(0) {}
 
 Bot::~Bot() { close(client_fd); }
+
+void	Bot::command()
+{
+	cmdMap[std::string("INVITE")] = 
+}
+
+
+void	Bot::invite(std::vector<std::string> cmds)
+{
+	
+}
 
 void	Bot::init()
 {
@@ -63,14 +74,29 @@ void	Bot::run()
 std::vector<std::string>	Bot::splitCmd(std::string const & s, std::string const & seperator)
 {
 	 	std::vector<std::string> output;
- 		std::string::size_type prev_pos = 0, pos = 0;
+		std::string::size_type prev_pos = 0, pos = 0;
+		size_t i = 0;
+		bool	point;
+		for (; i < s.length(); i++)
+			if (s[i] != ' ')
+				break;
+		if (s[i] == ':')
+			point = false;
+		else
+			point = true;
+			
  		while((pos = s.find(seperator, pos)) != std::string::npos)
  		{
-	 		if (s[prev_pos] == ':' && prev_pos != 0)
+	 		if (s[prev_pos] == ':')
  			{
-	 			std::string substring( s.substr(prev_pos) );
- 				output.push_back(substring);
- 				return (output);
+				if (point)
+				{
+	 				std::string substring( s.substr(prev_pos) );
+ 					output.push_back(substring);
+ 					return (output);
+				}
+				else
+					point = true;
  			}
  			std::string substring( s.substr(prev_pos, pos-prev_pos) );
  			if (!substring.empty())
@@ -84,27 +110,43 @@ std::vector<std::string>	Bot::splitCmd(std::string const & s, std::string const 
 	 return output;
 }
 
+std::vector<std::string>    Bot::ft_split(std::string const & s, std::string const & seperator)
+{
+	std::vector<std::string> output;
+	std::string::size_type prev_pos = 0, pos = 0;
+	while((pos = s.find(seperator, pos)) != std::string::npos)
+	{
+		std::string substring( s.substr(prev_pos, pos-prev_pos) );
+		if (!substring.empty())
+			output.push_back(substring);
+		pos += seperator.length();
+		prev_pos = pos;
+	}
+	std::string substring( s.substr(prev_pos, pos-prev_pos) );
+	if (!substring.empty())
+		output.push_back(substring);
+	return output;
+}
+
 void	Bot::cmdPars(std::string const & str)
 {
-	int	registerBot = 0;
 	std::vector<std::string>	cmd;
 	if(str[str.length() - 2] == '\r')
-		cmd = splitCmd(str, "\r\n");
+		cmd = ft_split(str, "\r\n");
 	else
-		cmd = splitCmd(str, "\n");
+		cmd = ft_split(str, "\n");
 	std::vector<std::string>::iterator	it = cmd.begin();
 	for (; it != cmd.end(); it++)
 	{
-		if (registerBot == 0)
-		{
-
-		}
 		std::vector<std::string>	cmds = splitCmd(*it, " ");
-		std::transform(cmds[0].begin(), cmds[0].end(),cmds[0].begin(), toupper);
-		std::vector<std::string>::iterator	itt = cmds.begin();
-
-		for (; itt != cmds.end(); itt++)
-		std::cout << *itt << std::endl;
-		//std::cout << *it;
+		std::transform(cmds[1].begin(), cmds[1].end(), cmds[1].begin(), toupper);
+		if (!isRegistered)
+		{
+			if (cmds[1]	!= "001")
+				throw std::runtime_error("Failed to register");
+			std::string	botJoin("JOIN #bot\r\n");
+			send(sock, botJoin.c_str(), botJoin.length(), 0);
+			isRegistered = true;
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/31 18:05:30 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:52:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,28 +203,28 @@ std::vector<std::string>    Command::splitChan(std::string const & s, std::strin
 void	Command::welcomeMsg(Client & client)
 {
 	std::vector<std::string>	welcomes;
-	welcomes.push_back(MAGENTA + "          _____                _____                            _____                    _____                    _____          " + RESET);
-	welcomes.push_back(MAGENTA + "         /\\    \\              /\\    \\                          /\\    \\                  /\\    \\                  /\\    \\         " + RESET);
-	welcomes.push_back(MAGENTA + "        /::\\    \\            /::\\    \\                        /::\\    \\                /::\\    \\                /::\\    \\        " + RESET);
-	welcomes.push_back(MAGENTA + "       /::::\\    \\           \\:::\\    \\                       \\:::\\    \\              /::::\\    \\              /::::\\    \\       " + RESET);
-	welcomes.push_back(MAGENTA + "      /::::::\\    \\           \\:::\\    \\                       \\:::\\    \\            /::::::\\    \\            /::::::\\    \\      " + RESET);
-	welcomes.push_back(MAGENTA + "     /:::/\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\     " + RESET);
-	welcomes.push_back(MAGENTA + "    /:::/__\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\    " + RESET);
-	welcomes.push_back(MAGENTA + "   /::::\\   \\:::\\    \\          /::::\\    \\                      /::::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\   " + RESET);
-	welcomes.push_back(MAGENTA + "  /::::::\\   \\:::\\    \\        /::::::\\    \\            ____    /::::::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\  " + RESET);
-	welcomes.push_back(MAGENTA + " /:::/\\:::\\   \\:::\\    \\      /:::/\\:::\\    \\          /\\   \\  /:::/\\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  /:::/    /   \\:::\\    \\ " + RESET);
-	welcomes.push_back(MAGENTA + "/:::/  \\:::\\   \\:::\\____\\    /:::/  \\:::\\____\\        /::\\   \\/:::/  \\:::\\____\\/:::/  \\:::\\   \\:::|    |/:::/____/     \\:::\\____\\" + RESET);
-	welcomes.push_back(MAGENTA + "\\::/    \\:::\\   \\::/    /   /:::/    \\::/    /        \\:::\\  /:::/    \\::/    /\\::/   |::::\\  /:::|____|\\:::\\    \\      \\::/    /" + RESET);
-	welcomes.push_back(MAGENTA + " \\/____/ \\:::\\   \\/____/   /:::/    / \\/____/          \\:::\\/:::/    / \\/____/  \\/____|:::::\\/:::/    /  \\:::\\    \\      \\/____/ " + RESET);
-	welcomes.push_back(MAGENTA + "          \\:::\\    \\      /:::/    /                    \\::::::/    /                 |:::::::::/    /    \\:::\\    \\             " + RESET);
-	welcomes.push_back(MAGENTA + "           \\:::\\____\\    /:::/    /                      \\::::/____/                  |::|\\::::/    /      \\:::\\    \\            " + RESET);
-	welcomes.push_back(MAGENTA + "            \\::/    /    \\::/    /                        \\:::\\    \\                  |::| \\::/____/        \\:::\\    \\           " + RESET);
-	welcomes.push_back(MAGENTA + "             \\/____/      \\/____/                          \\:::\\    \\                 |::|  ~|               \\:::\\    \\          " + RESET);
-	welcomes.push_back(MAGENTA + "                                                            \\:::\\    \\                |::|   |                \\:::\\    \\         " + RESET);
-	welcomes.push_back(MAGENTA + "                                                             \\:::\\____\\               \\::|   |                 \\:::\\____\\        " + RESET);
-	welcomes.push_back(MAGENTA + "                                                              \\::/    /                \\:|   |                  \\::/    /        " + RESET);
-	welcomes.push_back(MAGENTA + "                                                               \\/____/                  \\|___|                   \\/____/         " + RESET);
-	welcomes.push_back(MAGENTA + "                                                                                                                                 " + RESET);
+	welcomes.push_back(":" + MAGENTA + "          _____                _____                            _____                    _____                    _____          " + RESET);
+	welcomes.push_back(":" + MAGENTA + "         /\\    \\              /\\    \\                          /\\    \\                  /\\    \\                  /\\    \\         " + RESET);
+	welcomes.push_back(":" + MAGENTA + "        /::\\    \\            /::\\    \\                        /::\\    \\                /::\\    \\                /::\\    \\        " + RESET);
+	welcomes.push_back(":" + MAGENTA + "       /::::\\    \\           \\:::\\    \\                       \\:::\\    \\              /::::\\    \\              /::::\\    \\       " + RESET);
+	welcomes.push_back(":" + MAGENTA + "      /::::::\\    \\           \\:::\\    \\                       \\:::\\    \\            /::::::\\    \\            /::::::\\    \\      " + RESET);
+	welcomes.push_back(":" + MAGENTA + "     /:::/\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\     " + RESET);
+	welcomes.push_back(":" + MAGENTA + "    /:::/__\\:::\\    \\           \\:::\\    \\                       \\:::\\    \\        /:::/__\\:::\\    \\        /:::/  \\:::\\    \\    " + RESET);
+	welcomes.push_back(":" + MAGENTA + "   /::::\\   \\:::\\    \\          /::::\\    \\                      /::::\\    \\      /::::\\   \\:::\\    \\      /:::/    \\:::\\    \\   " + RESET);
+	welcomes.push_back(":" + MAGENTA + "  /::::::\\   \\:::\\    \\        /::::::\\    \\            ____    /::::::\\    \\    /::::::\\   \\:::\\    \\    /:::/    / \\:::\\    \\  " + RESET);
+	welcomes.push_back(":" + MAGENTA + " /:::/\\:::\\   \\:::\\    \\      /:::/\\:::\\    \\          /\\   \\  /:::/\\:::\\    \\  /:::/\\:::\\   \\:::\\____\\  /:::/    /   \\:::\\    \\ " + RESET);
+	welcomes.push_back(":" + MAGENTA + "/:::/  \\:::\\   \\:::\\____\\    /:::/  \\:::\\____\\        /::\\   \\/:::/  \\:::\\____\\/:::/  \\:::\\   \\:::|    |/:::/____/     \\:::\\____\\" + RESET);
+	welcomes.push_back(":" + MAGENTA + "\\::/    \\:::\\   \\::/    /   /:::/    \\::/    /        \\:::\\  /:::/    \\::/    /\\::/   |::::\\  /:::|____|\\:::\\    \\      \\::/    /" + RESET);
+	welcomes.push_back(":" + MAGENTA + " \\/____/ \\:::\\   \\/____/   /:::/    / \\/____/          \\:::\\/:::/    / \\/____/  \\/____|:::::\\/:::/    /  \\:::\\    \\      \\/____/ " + RESET);
+	welcomes.push_back(":" + MAGENTA + "          \\:::\\    \\      /:::/    /                    \\::::::/    /                 |:::::::::/    /    \\:::\\    \\             " + RESET);
+	welcomes.push_back(":" + MAGENTA + "           \\:::\\____\\    /:::/    /                      \\::::/____/                  |::|\\::::/    /      \\:::\\    \\            "  + RESET);
+	welcomes.push_back(":" + MAGENTA + "            \\::/    /    \\::/    /                        \\:::\\    \\                  |::| \\::/____/        \\:::\\    \\           " + RESET);
+	welcomes.push_back(":" + MAGENTA + "             \\/____/      \\/____/                          \\:::\\    \\                 |::|  ~|               \\:::\\    \\          "  + RESET);
+	welcomes.push_back(":" + MAGENTA + "                                                            \\:::\\    \\                |::|   |                \\:::\\    \\         "  + RESET);
+	welcomes.push_back(":" + MAGENTA + "                                                             \\:::\\____\\               \\::|   |                 \\:::\\____\\        " + RESET);
+	welcomes.push_back(":" + MAGENTA + "                                                              \\::/    /                \\:|   |                  \\::/    /        " + RESET);
+	welcomes.push_back(":" + MAGENTA + "                                                               \\/____/                  \\|___|                   \\/____/         " + RESET);
+	welcomes.push_back(":" + MAGENTA + "                                                                                                                                 " + RESET);
 
 	std::vector<std::string>::iterator	it = welcomes.begin();
 	for(; it != welcomes.end(); it++)
