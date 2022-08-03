@@ -20,10 +20,17 @@ Bot::~Bot() { close(client_fd); }
 
 void	Bot::command()
 {
+	cmdMap[std::string("PING")] = &Bot::pong; 
 	cmdMap[std::string("INVITE")] = &Bot::invite; 
 	cmdMap[std::string("PRIVMSG")] = &Bot::privmsg; 
 	cmdBotMap[std::string("HELLO")] = &Bot::hello; 
 	cmdBotMap[std::string("TIME")] = &Bot::timeCmd; 
+}
+
+void	Bot::pong(std::vector<std::string> cmds)
+{
+	std::string	message("PONG " + cmds[1] + "\r\n");
+	send(sock, message.c_str(), message.length(), 0);
 }
 
 void	Bot::invite(std::vector<std::string> cmds)
@@ -193,8 +200,7 @@ void	Bot::cmdPars(std::string const & str)
 		if (VERBOSE)
 			std::cout << BLUE + "<< " + *it + RESET << std::endl;
 		std::vector<std::string>	cmds = splitCmd(*it, " ");
-		std::transform(cmds[1].begin(), cmds[1].end(), cmds[1].begin(), toupper);
-		if (!isRegistered && cmds[1] != "NOTICE")
+		if (!isRegistered && cmds[1] != "NOTICE" && cmds[0] != "PING")
 		{
 			if (cmds[1]	!= "001")
 				throw std::runtime_error("Failed to register");
@@ -202,7 +208,16 @@ void	Bot::cmdPars(std::string const & str)
 			send(sock, botJoin.c_str(), botJoin.length(), 0);
 			isRegistered = true;
 		}
-		itMap = cmdMap.find(cmds[1]);
+		if (cmds[0][0] == ':')
+		{
+			std::transform(cmds[1].begin(), cmds[1].end(), cmds[1].begin(), toupper);
+			itMap = cmdMap.find(cmds[1]);
+		}
+		else
+		{
+			std::transform(cmds[0].begin(), cmds[0].end(), cmds[0].begin(), toupper);
+			itMap = cmdMap.find(cmds[0]);
+		}
 		if (itMap != cmdMap.end())
 			CALL_MEMBER_FN(*this, itMap->second) (cmds);
 	}

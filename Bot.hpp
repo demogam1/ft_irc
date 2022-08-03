@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:52 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/03 18:33:12 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:48:32 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ class Bot
 			void	cmdPars(std::string const & str);
 
 			void	command();
+			void	pong(std::vector<std::string> cmds);
 			void	invite(std::vector<std::string> cmds);
 			void	privmsg(std::vector<std::string> cmds);
 
