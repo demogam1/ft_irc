@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
+#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/07/30 18:40:44 by asebrech         ###   ########.fr        #
+#    Updated: 2022/08/02 14:52:25 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC =	main.cpp \
 		invite.cpp	\
 		topic.cpp \
 		names.cpp \
+		list.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

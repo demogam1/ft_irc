@@ -1,16 +1,16 @@
 =====CE QU'IL Y A FAIRE=====
 
 MODE CHANNEL
- o : operateur
- i : invitation Commande [INVITE]
- t : topic  Commande [TOPIC]
- k : password 
+ o : operateur <-- finished
+ i : invitation <-- finished
+ t : topic <-- finished
+ k : password <-- finished
 
 COMMANDE CHANNEL 
- [TOPIC]  
- [NAMES] 
- [LIST] 
- [INVIT] 
+ [TOPIC]  <-- finished
+ [NAMES] <-- finished
+ [LIST] <-- finished
+ [INVITE]
  [KICK]
  [WHOIS]
 
@@ -87,9 +87,11 @@ respone --> :sodium.libera.chat 442 titi #test :You're not on that channel
 :tantalum.libera.chat 332 titi #ref :salut
 :tantalum.libera.chat 333 titi #ref tata!~a@62.129.8.171 1658943200
 
+[NAMES]
 
+:mercury.libera.chat 353 ttiti = #wapy :pmp-p
 ----------------
 ERRORS:
 
  Si msg depasse 512 -> error
-
+ PRIVMSG deux point en plus

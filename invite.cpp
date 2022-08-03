@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invite.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:34 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/27 18:36:21 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:33:50 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void    Command::invite(std::vector<std::string> cmds, Client & client)
 		sendMsg(client, "443", cmds[1] + " " + cmds[2], ERR_USERONCHANNEL);
 		return;
 	}
-	chanMap[cmds[2]].addInvited(&client);
-	sendMsg(client, "341", cmds[2] + " " + cmds[1], "");
+	std::map<std::string, Channel>::iterator	itMap;
+	
+	sendMsg(client, "341", cmds[1] + " " + cmds[2], "");
 	sendConfirmTo(*it, client, cmds[0] + " " + it->getNick(), cmds[2]);
 	if (it->getAway().first)
 	{

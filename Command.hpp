@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/31 14:42:20 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/02 14:55:39 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ class	Command
 			void	topic(std::vector<std::string> cmds, Client & client);
 
 			void	names(std::vector<std::string> cmds, Client & client);
+
+			void	list(std::vector<std::string> cmds, Client & client);
 
 	private :
 			std::string	password;

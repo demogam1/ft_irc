@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/30 13:09:22 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/03 17:24:00 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define RPL_YOUREOPER ":You are now an IRC operator"
 # define RPL_UNAWAY ":You are no longer marked as being away"
 # define RPL_NOWAWAY ":You have been marked as being away"
+# define RPL_NOTOPIC ":No topic is set"
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
 # define ERR_NOTONCHANNEL " :You're not on that channel"
@@ -47,7 +48,8 @@
 # define ERR_CANNOTSENDTOCHAN ":Cannot send to channel"
 # define ERR_CHANOPRIVSNEEDED ":You're not channel operator"
 # define ERR_USERNOTINCHANNEL ":They aren't on that channel"
-# define RPL_NOTOPIC ":No topic is set"
+# define ERR_NOSUCHSERVER ":No such server"
+# define ERR_NOORIGIN ":No origin specified"
 
 
 # define RED	std::string("\e[31m")
