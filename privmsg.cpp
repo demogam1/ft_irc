@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:17:25 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/30 12:59:23 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/03 17:58:11 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	Command::privatmsg(std::vector<std::string> cmds, Client & client)
         std::map<std::string, Channel>::iterator	itMap;
         if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
         {
+            if (cmds[2][0] == ':')
+                cmds[2].erase(0, 1);
             itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1], cmds[2]);
             return;
         }

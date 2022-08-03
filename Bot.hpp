@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:52 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/02 19:01:43 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/03 18:33:12 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/socket.h>
 # include <unistd.h>
 # include <arpa/inet.h>
+# include <time.h>
 
 # include <iostream>
 # include <stdexcept>
@@ -44,10 +45,15 @@ class Bot
 			void	run();
 
 			std::vector<std::string>	ft_split(std::string const & s, std::string const & seperator);
+			std::vector<std::string>	splitCmd(std::string const & s, std::string const & seperator);
 			void	cmdPars(std::string const & str);
 
 			void	command();
 			void	invite(std::vector<std::string> cmds);
+			void	privmsg(std::vector<std::string> cmds);
+
+			void	hello(std::vector<std::string> cmds);
+			void	timeCmd(std::vector<std::string> cmds);
 
 	private :
 	
@@ -60,6 +66,7 @@ class Bot
 			std::string	buff;
 			int	isRegistered;
 			std::map<std::string, pfunc>	cmdMap;
+			std::map<std::string, pfunc>	cmdBotMap;
 };
 
 #endif

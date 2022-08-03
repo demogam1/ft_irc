@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:50:48 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 14:58:15 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:50:24 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 	if (ac == 3)
 	{
 		port = atoi(av[1]);
-		if (port < 1 || port > 65535)
+		if (port < 1024 || port > 65535)
 		{
 			std::cout << RED + "Error Port : must be an int between 1 and 65535" + RESET << std::endl;
 			return (1);
