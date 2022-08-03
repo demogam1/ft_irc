@@ -18,69 +18,6 @@ Bot::Bot(int port, std::string const & pass, std::string const & IP) : port(port
 
 Bot::~Bot() { close(client_fd); }
 
-void	Bot::command()
-{
-	cmdMap[std::string("PING")] = &Bot::pong; 
-	cmdMap[std::string("INVITE")] = &Bot::invite; 
-	cmdMap[std::string("PRIVMSG")] = &Bot::privmsg; 
-	cmdBotMap[std::string("HELLO")] = &Bot::hello; 
-	cmdBotMap[std::string("TIME")] = &Bot::timeCmd; 
-}
-
-void	Bot::pong(std::vector<std::string> cmds)
-{
-	std::string	message("PONG " + cmds[1] + "\r\n");
-	send(sock, message.c_str(), message.length(), 0);
-}
-
-void	Bot::invite(std::vector<std::string> cmds)
-{
-	if (cmds[3][0] == ':')
-		cmds[3].erase(0, 1);
-	std::string	message("JOIN " + cmds[3] + "\r\n");
-	
-	send(sock, message.c_str(), message.length(), 0);
-}
-
-void	Bot::privmsg(std::vector<std::string> cmds)
-{
-	if (cmds[0][0] == ':')
-		cmds[0].erase(0, 1);
-	if (cmds[3][0] == ':')
-		cmds[3].erase(0, 1);
-	if (cmds[2][0] == '#')
-		cmds[0].assign(cmds[2]);
-	else
-		cmds[0] = cmds[0].substr(0, cmds[0].find("!"));
-	std::vector<std::string>	botCmds = ft_split(cmds[3], " ");
-	std::transform(botCmds[0].begin(), botCmds[0].end(), botCmds[0].begin(), toupper);
-	if (botCmds[0] != "!BOT")
-		return ;
-	std::transform(botCmds[1].begin(), botCmds[1].end(), botCmds[1].begin(), toupper);
-	std::map<std::string, pfunc>::iterator	itMap;
-	itMap = cmdBotMap.find(botCmds[1]);
-	if (itMap != cmdBotMap.end())
-		CALL_MEMBER_FN(*this, itMap->second) (cmds);
-}
-
-void	Bot::timeCmd(std::vector<std::string> cmds)
-{
-	time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
-    tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
-
-	std::string	message("PRIVMSG " + cmds[0] + " :Current Date Time : " + buf + "\r\n");
-	send(sock, message.c_str(), message.length(), 0);
-}
-
-void	Bot::hello(std::vector<std::string> cmds)
-{
-	std::string	message("PRIVMSG " + cmds[0] + " :Hello, I am a AutoBot!\r\n");
-	send(sock, message.c_str(), message.length(), 0);
-}
-
 void	Bot::init()
 {
 	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -89,14 +26,11 @@ void	Bot::init()
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(port);
 	
+	struct hostent	*host_entry;
+	host_entry = gethostbyname(IP.c_str());
+	IP = inet_ntoa(*((struct in_addr *)host_entry->h_addr_list[0]));
 	if (inet_pton(AF_INET, IP.c_str(), &serv_addr.sin_addr) <= 0)
-	{
-		struct hostent	*host_entry;
-		host_entry = gethostbyname(IP.c_str());
-		IP = inet_ntoa(*((struct in_addr *)host_entry->h_addr_list[0]));
-		if (inet_pton(AF_INET, IP.c_str(), &serv_addr.sin_addr) <= 0)
-			throw std::runtime_error("Invalid address / Address not supported");
-	}
+		throw std::runtime_error("Invalid address / Address not supported");
 	
 	if ((client_fd = connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))) < 0)
 		throw std::runtime_error("Connection Failed");
@@ -113,7 +47,7 @@ void	Bot::run()
 	
 	botRegister += "NICK autoBot\r\nUSER autoBot bot * :Auto Bot\r\n";
 
-	send(sock, botRegister.c_str(), botRegister.length(), 0);
+	sendMsg(botRegister);
 	
 	while((valread = recv(sock, buffer, 1024, 0)))
 	{
@@ -186,6 +120,13 @@ std::vector<std::string>    Bot::ft_split(std::string const & s, std::string con
 	return output;
 }
 
+void	Bot::sendMsg(std::string const & message)
+{
+	send(sock, message.c_str(), message.length(), 0);
+	if (VERBOSE)
+		std::cout << GREEN + ">> " + message + RESET;
+}
+
 void	Bot::cmdPars(std::string const & str)
 {
 	std::vector<std::string>	cmd;
@@ -205,7 +146,7 @@ void	Bot::cmdPars(std::string const & str)
 			if (cmds[1]	!= "001")
 				throw std::runtime_error("Failed to register");
 			std::string	botJoin("JOIN #bot\r\n");
-			send(sock, botJoin.c_str(), botJoin.length(), 0);
+			sendMsg(botJoin);
 			isRegistered = true;
 		}
 		if (cmds[0][0] == ':')

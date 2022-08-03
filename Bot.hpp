@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:52 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/03 19:48:32 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 00:16:19 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class Bot
 
 			std::vector<std::string>	ft_split(std::string const & s, std::string const & seperator);
 			std::vector<std::string>	splitCmd(std::string const & s, std::string const & seperator);
+			void	sendMsg(std::string const & message);
 			void	cmdPars(std::string const & str);
 
 			void	command();
@@ -55,6 +56,8 @@ class Bot
 
 			void	hello(std::vector<std::string> cmds);
 			void	timeCmd(std::vector<std::string> cmds);
+			void	calcul(std::vector<std::string> cmds);
+			void	sexy(std::vector<std::string> cmds);
 
 	private :
 	

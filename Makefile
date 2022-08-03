@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
+#    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/08/02 14:52:25 by misaev           ###   ########.fr        #
+#    Updated: 2022/08/03 22:27:00 by asebrech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ OBJ = $(SRC:.cpp=.o)
 
 SRCBOT =	mainBot.cpp \
 			Bot.cpp \
+			CommandBot.cpp \
 
 OBJBOT = $(SRCBOT:.cpp=.o)
 
