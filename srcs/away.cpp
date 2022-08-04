@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   away.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:28:48 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/22 15:13:16 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:29:30 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::away(std::vector<std::string> cmds, Client & client)
 {

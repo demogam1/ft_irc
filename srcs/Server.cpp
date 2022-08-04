@@ -6,11 +6,11 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/30 18:14:56 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:44 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Server.hpp"
+#include "../headers/Server.hpp"
 
 Server::Server(int port, std::string const & pass) : port(port), pass(pass), command(pass, clients, IP)
 {

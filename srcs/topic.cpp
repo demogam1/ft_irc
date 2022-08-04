@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 17:14:30 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/30 12:33:33 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:47 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void Command::topic(std::vector<std::string> cmds, Client & client)
 {

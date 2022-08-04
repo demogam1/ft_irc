@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   nick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:56:14 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 10:17:35 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:18 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::nick(std::vector<std::string> cmds, Client & client)
 {

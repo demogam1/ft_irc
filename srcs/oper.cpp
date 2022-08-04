@@ -6,11 +6,11 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 18:15:02 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/24 13:44:05 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:25 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void Command::oper(std::vector<std::string> cmds, Client & client)
 {

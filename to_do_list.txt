@@ -8,7 +8,7 @@ MODE CHANNEL
 
 COMMANDE CHANNEL 
  [TOPIC]  <-- finished
- [NAMES] <-- finished
+ [NAMES] <-- a ajouter a Join
  [LIST] <-- finished
  [INVITE]
  [KICK]

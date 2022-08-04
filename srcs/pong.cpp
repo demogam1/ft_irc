@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pong.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:55:54 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/03 18:27:21 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::pong(std::vector<std::string> cmds, Client & client)
 {

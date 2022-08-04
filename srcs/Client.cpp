@@ -6,11 +6,11 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:25:11 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/24 10:51:14 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:29:49 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Client.hpp"
+#include "../headers/Client.hpp"
 
 Client::Client(int sd, char * IP, uint32_t port) : socket(sd), IP(IP), port(port),
 				buffer(), nick("*"), pass(""), user("*"), mode("*"), unused("*"), realname("*"),

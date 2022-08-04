@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:57:14 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/20 18:15:36 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:32 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::pass(std::vector<std::string> cmds, Client & client)
 {

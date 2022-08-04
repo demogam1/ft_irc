@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   notice.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:22:29 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/22 15:30:45 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:22 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::notice(std::vector<std::string> cmds, Client & client)
 {

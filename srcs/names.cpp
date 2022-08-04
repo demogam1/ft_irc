@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.cpp                                           :+:      :+:    :+:   */
+/*   names.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 16:05:27 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/02 15:26:06 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:15 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
-void Command::list(std::vector<std::string> cmds, Client & client)
+void Command::names(std::vector<std::string> cmds, Client & client)
 {
     if (!client.getRegistered())
     {
@@ -21,25 +21,30 @@ void Command::list(std::vector<std::string> cmds, Client & client)
 	}
     std::map<std::string, Channel>::iterator itMap;
     std::list<Client>::iterator	itClient;
-    sendMsg(client, "321", "", "Channel :Users  Name");
     if (cmds.size() == 1)
     {
         itMap = chanMap.begin();
         std::string message;
+        std::string channel;
         for (; itMap != chanMap.end(); itMap++)
         {
-            std::string channel(itMap->first);
             itClient = clients.begin();
             if (!message.empty())
                 message = "";
+            if (!channel.empty())
+                channel = "";
             for(; itClient != clients.end(); itClient++)
             {
-                if (itClient->isInChan(channel) == true)
-                    message.append(itMap->second.getTopic());
+                if (itMap->second.isChanOp(*itClient) == true)
+                    message.append("@" + itClient->getNick() + " ");
+                else if (itClient->isInChan(itMap->first) == true)
+                    message.append(itClient->getNick() + " ");
+                else if (itClient->getChannels().size() == 0)
+                    channel.append(itClient->getNick() + " ");
             }
-            if (message[0] == ':')
-                message.erase(0,1);
-            sendMsg(client, "322", channel + " :", message);
+            if (channel.size() > 0)
+                sendMsg(client, "353", "* * :", channel);
+            sendMsg(client, "353", "= " + itMap->first + " :", message);
         }
     }
     else if (cmds.size() > 1)
@@ -47,7 +52,7 @@ void Command::list(std::vector<std::string> cmds, Client & client)
         std::vector<std::string>	keys;
         std::vector<std::string>::iterator	iChan;
         std::string message;
-        keys = splitChan(cmds[1], ",");
+        keys = ft_split(cmds[1], ",");
         iChan = keys.begin();
         for (; iChan != keys.end(); iChan++)
         {
@@ -61,19 +66,19 @@ void Command::list(std::vector<std::string> cmds, Client & client)
                     itClient = clients.begin();
                     for (; itClient != clients.end(); itClient++)
                     {
-                        if (itClient->isInChan(itMap->first) == true)
-                            message.append(itMap->second.getTopic());
+                        if (itMap->second.isChanOp(*itClient) == true)
+                            message.append("@" + itClient->getNick() + " ");
+                        else if (itClient->isInChan(itMap->first) == true)
+                            message.append(itClient->getNick() + " ");
                     }
-                    if (message[0] == ':')
-                        message.erase(0,1);
-                    sendMsg(client, "322", itMap->first + " :", message);
+                    sendMsg(client, "353", "= " + itMap->first + " :", message);
                 }
             }
         }
     }
     if (cmds.size() == 1)
-        sendMsg(client, "323", "", ":End of /NAMES list.");
+        sendMsg(client, "366", "", "* :End of /NAMES list.");
     else    
-        sendMsg(client, "323", cmds[1] +  " :End of", "/NAMES list.");
+        sendMsg(client, "366", cmds[1] +  " :End of", "/NAMES list.");
     return;
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   user.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 17:58:19 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/19 17:58:54 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:50 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void	Command::user(std::vector<std::string> cmds, Client & client)
 {

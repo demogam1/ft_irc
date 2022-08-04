@@ -6,11 +6,11 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:31:07 by misaev            #+#    #+#             */
-/*   Updated: 2022/07/24 11:09:41 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:30:04 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Command.hpp"
+#include "../headers/Command.hpp"
 
 void Command::kill(std::vector<std::string> cmds, Client &client)
 {
