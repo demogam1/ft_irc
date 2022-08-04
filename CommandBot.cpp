@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:27:57 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 00:24:07 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 10:34:20 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	Bot::command()
 	cmdMap[std::string("PING")] = &Bot::pong; 
 	cmdMap[std::string("INVITE")] = &Bot::invite; 
 	cmdMap[std::string("PRIVMSG")] = &Bot::privmsg; 
+	cmdBotMap[std::string("HELP")] = &Bot::help; 
 	cmdBotMap[std::string("HELLO")] = &Bot::hello; 
 	cmdBotMap[std::string("TIME")] = &Bot::timeCmd; 
 	cmdBotMap[std::string("CALCUL")] = &Bot::calcul; 
@@ -48,15 +49,34 @@ void	Bot::privmsg(std::vector<std::string> cmds)
 		cmds[0].assign(cmds[2]);
 	else
 		cmds[0] = cmds[0].substr(0, cmds[0].find("!"));
+	std::string	message("PRIVMSG " + cmds[0] + " :Unknow command, please use \"!BOT HELP\"\r\n");
 	std::vector<std::string>	botCmds = ft_split(cmds[3], " ");
 	std::transform(botCmds[0].begin(), botCmds[0].end(), botCmds[0].begin(), toupper);
 	if (botCmds[0] != "!BOT" || botCmds.size() < 2)
+	{
+		if (cmds[2][0] != '#' || cmds[2] == "#bot" || cmds[2] == "#Bot")
+			sendMsg(message);
 		return ;
+	}
 	std::transform(botCmds[1].begin(), botCmds[1].end(), botCmds[1].begin(), toupper);
 	std::map<std::string, pfunc>::iterator	itMap;
 	itMap = cmdBotMap.find(botCmds[1]);
 	if (itMap != cmdBotMap.end())
 		CALL_MEMBER_FN(*this, itMap->second) (cmds);
+	else
+		sendMsg(message);
+}
+
+void	Bot::help(std::vector<std::string> cmds)
+{
+	std::string	message("PRIVMSG " + cmds[0] + " :HELP : !BOT <command> {HELLO, TIME, CALCUL, SEXY}\r\n");
+	sendMsg(message);
+}
+
+void	Bot::hello(std::vector<std::string> cmds)
+{
+	std::string	message("PRIVMSG " + cmds[0] + " :Hello, I am autoBot!\r\n");
+	sendMsg(message);
 }
 
 void	Bot::timeCmd(std::vector<std::string> cmds)
@@ -71,32 +91,26 @@ void	Bot::timeCmd(std::vector<std::string> cmds)
 	sendMsg(message);
 }
 
-void	Bot::hello(std::vector<std::string> cmds)
-{
-	std::string	message("PRIVMSG " + cmds[0] + " :Hello, I am autoBot!\r\n");
-	sendMsg(message);
-}
-
 void	Bot::calcul(std::vector<std::string> cmds)
 {
 	std::vector<std::string>	botCmds = ft_split(cmds[3], " ");
-	std::string	errMsg("PRIVMSG " + cmds[0] + " :CALCUL <number1> <operator> <number2> [ <operator> {+, -, *, /, %} ]\r\n");
-	int	a, b = 0;
+	std::string	errMsg("PRIVMSG " + cmds[0] + " :CALCUL : !BOT CALCUL <number1> <operator> <number2> [ <operator> {+, -, *, /, %} ]\r\n");
+	double	a, b = 0.0;
 
 	if (botCmds.size() < 5)
 	{
 		sendMsg(errMsg);
 		return ;
 	}
-	a = atoi(botCmds[2].c_str());
-	b = atoi(botCmds[4].c_str());
+	a = atof(botCmds[2].c_str());
+	b = atof(botCmds[4].c_str());
 	if (a == 0 || b == 0)
 	{
 		sendMsg(errMsg);
 		return ;
 	}
 		std::cout << a << " " <<  b << std::endl;
-	std::string message("PRIVMSG " + cmds[0] + " :RESULT " + botCmds[2] + " " + botCmds[3] + " " + botCmds[4] + " = ");
+	std::string message("PRIVMSG " + cmds[0] + " :RESULT : " + botCmds[2] + " " + botCmds[3] + " " + botCmds[4] + " = ");
 	if (botCmds[3] == "+")
 	{
 		sendMsg(message + std::to_string(a + b) + "\r\n");
@@ -119,7 +133,7 @@ void	Bot::calcul(std::vector<std::string> cmds)
 	}
 	else if (botCmds[3] == "%")
 	{
-		sendMsg(message + std::to_string(a % b) + "\r\n");
+		sendMsg(message + std::to_string((int)a % (int)b) + "\r\n");
 		return ;
 	}
 	else
@@ -294,7 +308,8 @@ void	Bot::sexy(std::vector<std::string> cmds)
 	std::vector<std::string>::iterator	it;
 	for (it = sexy.begin(); it != sexy.end(); it++)
 	{
+		usleep(300);
 		sendMsg("PRIVMSG " + cmds[0] + " :" + MAGENTA + *it + RESET + "\r\n");
-		usleep(100);
+		usleep(300);
 	}
 }
