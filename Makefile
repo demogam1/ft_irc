@@ -6,7 +6,7 @@
 #    By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/08/03 22:27:00 by asebrech         ###   ########.fr        #
+#    Updated: 2022/08/04 11:28:43 by asebrech         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,34 +14,34 @@ CXX = clang++
 VERBOSE = 1
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -D VERBOSE=$(VERBOSE)
 NAME = ircserv 
-SRC =	main.cpp \
-		Server.cpp \
-		Client.cpp \
-		Command.cpp \
-		Channel.cpp \
-		pass.cpp \
-		nick.cpp \
-		user.cpp \
-		quit.cpp \
-		oper.cpp \
-		mode.cpp \
-		join.cpp \
-		part.cpp \
-		pong.cpp \
-		kill.cpp \
-		privmsg.cpp \
-		away.cpp \
-		notice.cpp \
-		invite.cpp	\
-		topic.cpp \
-		names.cpp \
-		list.cpp \
+SRC =	srcs/main.cpp \
+		srcs/Server.cpp \
+		srcs/Client.cpp \
+		srcs/Command.cpp \
+		srcs/Channel.cpp \
+		srcs/pass.cpp \
+		srcs/nick.cpp \
+		srcs/user.cpp \
+		srcs/quit.cpp \
+		srcs/oper.cpp \
+		srcs/mode.cpp \
+		srcs/join.cpp \
+		srcs/part.cpp \
+		srcs/pong.cpp \
+		srcs/kill.cpp \
+		srcs/privmsg.cpp \
+		srcs/away.cpp \
+		srcs/notice.cpp \
+		srcs/invite.cpp	\
+		srcs/topic.cpp \
+		srcs/names.cpp \
+		srcs/list.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-SRCBOT =	mainBot.cpp \
-			Bot.cpp \
-			CommandBot.cpp \
+SRCBOT =	botSrcs/mainBot.cpp \
+			botSrcs/Bot.cpp \
+			botSrcs/CommandBot.cpp \
 
 OBJBOT = $(SRCBOT:.cpp=.o)
 
