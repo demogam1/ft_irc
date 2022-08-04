@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:00 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/31 13:07:56 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 10:44:49 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	main(int ac, char **av)
 	if (ac == 4)
 	{
 		port = atoi(av[1]);
-		if (port < 1 || port > 65535)
+		if (port < 1024 || port > 65535)
 		{
-			std::cout << RED + "Error Port : must be an int between 1 and 65535" + RESET << std::endl;
+			std::cout << RED + "Error Port : must be an int between 1024 and 65535" + RESET << std::endl;
 			return (1);
 		}
 		Bot	bot(port, av[2], av[3]);

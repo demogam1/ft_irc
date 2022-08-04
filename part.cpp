@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:50:37 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/22 19:21:05 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 10:59:19 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void Command::part(std::vector<std::string> cmds, Client &client)
 		sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
 		return;
 	}
-	std::vector<std::string> chans = splitChan(cmds[1], ",");
+	std::vector<std::string> chans = ft_split(cmds[1], ",");
 	std::vector<std::string>::iterator it = chans.begin();
 	std::map<std::string, Channel>::iterator itMap;
 	for (; it != chans.end(); it++)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/03 19:40:41 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 10:56:05 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ class	Command
 
 			void	setIP(std::string const & val);
 
+			std::vector<std::string>	ft_split(std::string const & s, std::string const & seperator);
+			
 			std::vector<std::string>	splitCmd(std::string const & s, std::string const & seperator);
-
-			std::vector<std::string>	splitChan(std::string const & s, std::string const & seperator);
 
 			void	parsCmd(Client & client);
 

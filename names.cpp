@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   names.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 16:05:27 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/02 19:05:40 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 10:59:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void Command::names(std::vector<std::string> cmds, Client & client)
         std::vector<std::string>	keys;
         std::vector<std::string>::iterator	iChan;
         std::string message;
-        keys = splitChan(cmds[1], ",");
+        keys = ft_split(cmds[1], ",");
         iChan = keys.begin();
         for (; iChan != keys.end(); iChan++)
         {

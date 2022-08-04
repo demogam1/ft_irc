@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/03 19:40:36 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 10:57:34 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,50 @@ bool	Command::isSpecial(char c) const
 
 void	Command::setIP(std::string const & val) { IP = val;}
 
+std::vector<std::string>    Command::ft_split(std::string const & s, std::string const & seperator)
+{
+	std::vector<std::string> output;
+	std::string::size_type prev_pos = 0, pos = 0;
+	while((pos = s.find(seperator, pos)) != std::string::npos)
+	{
+		std::string substring( s.substr(prev_pos, pos-prev_pos) );
+		if (!substring.empty())
+			output.push_back(substring);
+		pos += seperator.length();
+		prev_pos = pos;
+	}
+	std::string substring( s.substr(prev_pos, pos-prev_pos) );
+	if (!substring.empty())
+		output.push_back(substring);
+	return output;
+}
+
 std::vector<std::string>	Command::splitCmd(std::string const & s, std::string const & seperator)
 {
 	 	std::vector<std::string> output;
- 		std::string::size_type prev_pos = 0, pos = 0;
+		std::string::size_type prev_pos = 0, pos = 0;
+		size_t i = 0;
+		bool	point;
+		for (; i < s.length(); i++)
+			if (s[i] != ' ')
+				break;
+		if (s[i] == ':')
+			point = false;
+		else
+			point = true;
+			
  		while((pos = s.find(seperator, pos)) != std::string::npos)
  		{
-	 		if (s[prev_pos] == ':' && prev_pos != 0)
+	 		if (s[prev_pos] == ':')
  			{
-	 			std::string substring( s.substr(prev_pos) );
- 				output.push_back(substring);
- 				return (output);
+				if (point)
+				{
+	 				std::string substring( s.substr(prev_pos) );
+ 					output.push_back(substring);
+ 					return (output);
+				}
+				else
+					point = true;
  			}
  			std::string substring( s.substr(prev_pos, pos-prev_pos) );
  			if (!substring.empty())
@@ -143,9 +176,9 @@ void	Command::parsCmd(Client & client)
 {
 	std::vector<std::string>	cmd;
 	if(client.getBuff()[client.getBuff().length() - 2] == '\r')
-		cmd = splitCmd(client.getBuff(), "\r\n");
+		cmd = ft_split(client.getBuff(), "\r\n");
 	else
-		cmd = splitCmd(client.getBuff(), "\n");
+		cmd = ft_split(client.getBuff(), "\n");
 	std::vector<std::string>::iterator	it = cmd.begin();
 	std::map<std::string, pfunc>::iterator	iter;
 	for (; it != cmd.end(); it++)
@@ -181,24 +214,6 @@ void	Command::registerClient(Client & client)
 		sendMsg(client, "001", "", RPL_WELCOME); 
 		welcomeMsg(client);
 	}
-}
-
-std::vector<std::string>    Command::splitChan(std::string const & s, std::string const & seperator)
-{
-	std::vector<std::string> output;
-	std::string::size_type prev_pos = 0, pos = 0;
-	while((pos = s.find(seperator, pos)) != std::string::npos)
-	{
-		std::string substring( s.substr(prev_pos, pos-prev_pos) );
-		if (!substring.empty())
-			output.push_back(substring);
-		pos += seperator.length();
-		prev_pos = pos;
-	}
-	std::string substring( s.substr(prev_pos, pos-prev_pos) );
-	if (!substring.empty())
-		output.push_back(substring);
-	return output;
 }
 
 void	Command::welcomeMsg(Client & client)
