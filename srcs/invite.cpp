@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:34 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/04 12:05:15 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/04 14:29:56 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void    Command::invite(std::vector<std::string> cmds, Client & client)
 	sendConfirmTo(*it, client, cmds[0] + " " + it->getNick(), cmds[2]);
 	std::map<std::string, Channel>::iterator	itMap;
 	if ((itMap = chanMap.find(cmds[2])) != chanMap.end())
-		itMap->second.addInvited(&client);
+	{
+		itMap->second.addInvited(&(*it));
+		std::cout << itMap->first << std::endl;	
+	}
 	else
 	{
 		sendMsg(client, "401", cmds[1], ERR_NOSUCHNICK);

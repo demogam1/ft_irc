@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 11:30:00 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:46:45 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 	}
 	std::vector<std::string>	chans = ft_split(cmds[1], ",");
 	std::vector<std::string>	keys;
+	std::vector<std::string>	names;
+	names.push_back("names");
+	names.push_back(cmds[1]);
 	if (cmds.size() > 2)
 		keys = ft_split(cmds[2], ",");
 	std::vector<std::string>::iterator	it = chans.begin();
@@ -43,6 +46,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 				itMap->second.setPassword(*itKey);
 			client.getChannels().push_back(*it);
 			sendConfirm(client, cmds[0] + " " + *it, "");
+			Command::names(names, client);
 			itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 		}
 		else
@@ -62,6 +66,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 					itMap->second.addClient(&client);
 					client.getChannels().push_back(*it);
 					sendConfirm(client, cmds[0] + " " + *it, "");
+					Command::names(names, client);
 					if (!itMap->second.getTopic().empty())
 					{
 						sendMsg(client, "332", *it, itMap->second.getTopic());

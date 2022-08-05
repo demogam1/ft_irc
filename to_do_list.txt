@@ -10,9 +10,9 @@ COMMANDE CHANNEL
  [TOPIC]  <-- finished
  [NAMES] <-- a ajouter a Join
  [LIST] <-- finished
- [INVITE]
- [KICK]
- [WHOIS]
+ [INVITE] <-- finished
+ [KICK] <-- finished
+ [WHOIS] 
 
 A NOTE
  EN FONCTION DES MODE ET DES COMMANDES ON AJOUTE DES FONCTIONNALITER A [JOIN]
@@ -90,9 +90,43 @@ respone --> :sodium.libera.chat 442 titi #test :You're not on that channel
 [NAMES]
 
 :mercury.libera.chat 353 ttiti = #wapy :pmp-p
+
+[KICK]
+
+input --> kick #ref titi
+respone --> :tata!~a@62.129.8.171 KICK #ref titi :titi
+
+[WHOIS]
+
+311    RPL_WHOISUSER
+"<nick> <user> <host> * :<real name>"
+
+313    RPL_WHOISOPERATOR
+"<nick> :is an IRC operator"
+
+317    RPL_WHOISIDLE
+"<nick> <integer> :seconds idle"
+
+319    RPL_WHOISCHANNELS
+"<nick> :*( ( "@" / "+" ) <channel> " " )"
+ -----
+311    RPL_WHOISUSER
+"<nick> <user> <host> * :<real name>"
+
+312    RPL_WHOISSERVER
+"<nick> <server> :<server info>"
+
+318    RPL_ENDOFWHOIS
+"<nick> :End of WHOIS list"
 ----------------
 ERRORS:
 
  Si msg depasse 512 -> error
- PRIVMSG deux point en plus
- FIXER LE NOM DU SPLIT
+
+:copper.libera.chat 311 tata tata ~a 62.129.8.171 * :a
+:copper.libera.chat 319 tata tata :@#ref
+:copper.libera.chat 312 tata tata copper.libera.chat :Sofia, BG
+:copper.libera.chat 301 tata tata :salut
+:copper.libera.chat 338 tata tata 62.129.8.171 :actually using host
+:copper.libera.chat 317 tata tata 45 1659727080 :seconds idle, signon time
+:copper.libera.chat 318 tata tata :End of /WHOIS list.

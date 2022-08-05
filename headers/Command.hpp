@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Command.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 10:56:05 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/05 17:19:10 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,10 @@ class	Command
 			void	names(std::vector<std::string> cmds, Client & client);
 
 			void	list(std::vector<std::string> cmds, Client & client);
+			
+			void	kick(std::vector<std::string> cmds, Client & client);
+
+			void	whois(std::vector<std::string> cmds, Client & client);
 
 	private :
 			std::string	password;

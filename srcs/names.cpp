@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   names.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 16:05:27 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/04 11:30:15 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:16:54 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ void Command::names(std::vector<std::string> cmds, Client & client)
                 else if (itClient->getChannels().size() == 0)
                     channel.append(itClient->getNick() + " ");
             }
-            if (channel.size() > 0)
-                sendMsg(client, "353", "* * :", channel);
             sendMsg(client, "353", "= " + itMap->first + " :", message);
         }
+        if (channel.size() > 0)
+            sendMsg(client, "353", "* * :", channel);
     }
     else if (cmds.size() > 1)
     {
         std::vector<std::string>	keys;
         std::vector<std::string>::iterator	iChan;
-        std::string message;
+        std::string message;    
         keys = ft_split(cmds[1], ",");
         iChan = keys.begin();
         for (; iChan != keys.end(); iChan++)
