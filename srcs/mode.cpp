@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/04 11:30:13 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/06 16:19:52 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                     if (itMap->second.isChanOp(*it) == true)
                                     {
                                         itMap->second.deleteChanOp(&(*it));
-                                        sendSpecConfirm(client , client.getNick(), cmds[0], cmds[2]);
+										itMap->second.addClient(&(*it));
+                                        sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+										itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                     }
                                     return;
                                 }
@@ -104,7 +106,9 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                     if (itMap->second.isChanOp(*it) == false)
                                     {
                                         itMap->second.addChanOp(&(*it));                                
-                                        sendSpecConfirm(client , client.getNick(), cmds[0], cmds[2]);
+										itMap->second.deleteClient(&(*it));
+                                        sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+										itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                     }
                                     return;
                                 }
@@ -122,7 +126,8 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 if (itMap->second.getInvite() == true)
                                 {
                                     itMap->second.setInvite(false);
-                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                 }
                                 return;
                             }
@@ -131,7 +136,8 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 if (itMap->second.getInvite() == false)
                                 {
                                     itMap->second.setInvite(true);
-                                    sendConfirm(client , cmds[0]  + " " + cmds[1] + " " + cmds[2], "");
+                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                 }
                                 return;
                             }
@@ -143,7 +149,8 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 if (itMap->second.getEnableTopic() == true)
                                 {
                                     itMap->second.enableTopic(false);
-                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                 }
                                 return;
                             }
@@ -152,7 +159,8 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                 if (itMap->second.getEnableTopic() == false)
                                 {
                                     itMap->second.enableTopic(true);
-                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2], "");
+                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
                                 }
                                 return;
                             }

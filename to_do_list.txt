@@ -121,7 +121,20 @@ respone --> :tata!~a@62.129.8.171 KICK #ref titi :titi
 ----------------
 ERRORS:
 
- Si msg depasse 512 -> error
+ mode #channel +i doit notifier tous le channel
+
+ mode #channel
+ mode client
+ -> mode ->mesage de reponse +i....
+
+mode #channel b -> ne doit pas envoyer Unknow command 
+mode error 472 pas utilise
+472    ERR_UNKNOWNMODE
+              "<char> :is unknown mode char to me for <channel>"
+472 pour channel 
+501 pour les user
+
+:10.13.1.1 442 alo alo aaa #bla :They aren't on that channel
 
 :copper.libera.chat 311 tata tata ~a 62.129.8.171 * :a
 :copper.libera.chat 319 tata tata :@#ref
