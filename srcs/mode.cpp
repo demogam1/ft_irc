@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/06 20:20:23 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 20:26:09 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
             {
                 if (it->getNick() == cmds[1])
                 {
-                    if (it->getAway().first == true)
+                    if (it->getOperator() == true)
                         sendMsg(client, "324", "", "+o");
                     else
                         sendMsg(client, "324", "", "+");
