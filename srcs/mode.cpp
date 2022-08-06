@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/06 20:20:23 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 20:39:43 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
             {
                 if (it->getNick() == cmds[1])
                 {
-                    if (it->getAway().first == true)
+                    if (it->getOperator() == true)
                         sendMsg(client, "324", "", "+o");
                     else
                         sendMsg(client, "324", "", "+");
@@ -237,10 +237,13 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                     }
 					if (okay)
 					{
-						for (size_t i = 0; i < arg.length(); i++)
+						size_t i = 0;
+						while(i < arg.length())
 						{
-							if ((i + 1) != arg.length() && (arg[i + 1] == '-' || arg[i + 1] == '+'))
+							if ((i + 1) != arg.length() && (arg[i + 1] == '-' || arg[i + 1] == '+') && (arg[i] == '-' || arg[i] == '+'))
 								arg.erase(i, 1);
+							else
+								i++;
 						}
 						for (int i = arg.length() - 1; i != 0; i--)
 						{
