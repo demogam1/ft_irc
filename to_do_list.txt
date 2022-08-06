@@ -134,6 +134,11 @@ afficher les modes utiliser dans les channels
 }
 ======================
 -> mode ->mesage de reponse +i....
+ mode #channel
+ mode client
+ -> mode ->mesage de reponse +i....
+ JOIN -> +i....
+
 
 mode #channel b -> ne doit pas envoyer Unknow command 
 mode error 472 pas utilise
