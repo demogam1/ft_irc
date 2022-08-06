@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:47:49 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 11:30:44 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/06 15:07:11 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Server::Server() : port(4242), pass(""), command(pass, clients, IP)
 
 Server::~Server()
 {
+	close(master_socket);
 }
 
 void	Server::myhostname()
@@ -69,7 +70,7 @@ void	Server::run()
 	int	max_sd;
 	int	ret;
 	std::list<Client>::iterator	it;
-	char	buffer[1024];
+	char	buffer[2048];
 
 	while(true)
 	{
@@ -93,6 +94,8 @@ void	Server::run()
 			if ((ret = accept(master_socket, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)  
 				throw std::runtime_error("accept");
 			Client	client(ret, inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+			std::string	message(":" + IP + " NOTICE * :ft_IRC : To register please use PASS - NICK - USER commands\r\n");
+			send(client.getSocket(), message.c_str(), message.length(), 0);
 			if (VERBOSE)
 				std::cout << UNDER + "New connection, socket fd : " << client.getSocket() << ", IP : " << client.getIP() << ", port : " << client.getPort() << RESET << std::endl;
 			clients.push_back(client);
@@ -102,7 +105,7 @@ void	Server::run()
 			sd = it->getSocket();
 			if (FD_ISSET(sd, &readfds))
 			{
-				if ((ret = recv(sd, (void*)buffer, 1024, 0)) == 0)
+				if ((ret = recv(sd, (void*)buffer, 2048, 0)) == 0)
 				{
 					it->setConnected(false);
 					it->getBuff().assign("QUIT :Remote host closed the connection\r\n");

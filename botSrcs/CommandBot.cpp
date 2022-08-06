@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 22:27:57 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 17:34:55 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/06 11:51:26 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	Bot::calcul(std::vector<std::string> cmds)
 	}
 	a = atof(botCmds[2].c_str());
 	b = atof(botCmds[4].c_str());
-		std::cout << a << " " <<  b << std::endl;
 	std::string message("PRIVMSG " + cmds[0] + " :RESULT : " + std::to_string(a) + " " + botCmds[3] + " " + std::to_string(b) + " = ");
 	if (botCmds[3] == "+")
 	{

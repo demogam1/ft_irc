@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 14:46:45 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 12:52:55 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 	{
 		sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
 		return ;
+	}
+	if (cmds[1] == "0")
+	{
+		std::vector<std::string>::iterator	it = client.getChannels().begin();
+		std::vector<std::string>	partCmd;
+		partCmd.push_back("PART ");
+		partCmd.push_back("");
+		for (;it != client.getChannels().end(); it++)
+			partCmd[1].append(*it + ",");
+		part(partCmd, client);
+		return;
 	}
 	std::vector<std::string>	chans = ft_split(cmds[1], ",");
 	std::vector<std::string>	keys;
