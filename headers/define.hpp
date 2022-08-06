@@ -53,6 +53,7 @@
 # define ERR_USERNOTINCHANNEL ":They aren't on that channel"
 # define ERR_NOSUCHSERVER ":No such server"
 # define ERR_NOORIGIN ":No origin specified"
+# define ERR_UNKNOWNMODE ":is unknown mode char to me for "
 
 
 # define RED	std::string("\e[31m")
