@@ -6,7 +6,7 @@
 /*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:58:40 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/06 16:19:52 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/06 20:11:10 by asebrech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                     }
                 }
             }
-            else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a')
+            else if (error_nbr == 0)
             {
                 sendMsg(client, "501", "", ERR_UMODEUNKNOWNFLAG);
                 error_nbr++;
@@ -59,6 +59,9 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
     }
     else if (cmds[1][0] == '#')
     {
+		std::string	arg("+");
+		std::string	opt;
+		bool	okay = false;
         std::map<std::string, Channel>::iterator	itMap;
         if ((itMap = chanMap.find(cmds[1])) != chanMap.end())
         {
@@ -67,17 +70,33 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                 if(itMap->second.isChanOp(client) == true)
                 {
                     for (size_t i = 0;i < cmds[2].length(); i++)
+					{
+						if (cmds[2][i] != '-' && cmds[2][i] != '+' && cmds[2][i] != 'o' && cmds[2][i] != 'i' && cmds[2][i] != 't' && cmds[2][i] != 'k')
+                        {
+							std::string s;
+							s.push_back(cmds[2][i]);
+                            sendMsg(client, "472", s, ERR_UNKNOWNMODE + itMap->first);
+							return ;
+                        }
+					}
+                    for (size_t i = 0;i < cmds[2].length(); i++)
                     {    
-                        if (cmds[2][i] == '-')
+                        if (cmds[2][i] == '-' && sign != '-')
+						{
                             sign = '-';
-                        else if (cmds[2][i] == '+')
+							arg.append("-");
+						}
+                        else if (cmds[2][i] == '+' && sign != '+')
+						{
                             sign = '+';
-                        else if (cmds[2][i] == 'o' && cmds[2][i + 1] == 0)
+							arg.append("+");
+						}
+                        else if (cmds[2][i] == 'o')
                         {
                             if (cmds.size() < 4)
                             {
                                 sendMsg(client, "461", cmds[0], ERR_NEEDMOREPARAMS);
-                                return;
+								continue ;
                             }
                             std::list<Client>::iterator	it = clients.begin();
                             for (; it != clients.end(); it++)
@@ -86,7 +105,7 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                             if (it == clients.end())
                             {
                                 sendMsg(client, "401", "", ERR_NOSUCHNICK);
-                                return;
+								continue ;
                             }
                             if (it->isInChan(cmds[1]) == true)
                             {                                
@@ -96,102 +115,118 @@ void Command::mode(std::vector<std::string> cmds, Client & client)
                                     {
                                         itMap->second.deleteChanOp(&(*it));
 										itMap->second.addClient(&(*it));
-                                        sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-										itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+										arg.append("o");
+										okay = true;
                                     }
-                                    return;
                                 }
-                                if (sign == '+')
+                                else if (sign == '+')
                                 {
                                     if (itMap->second.isChanOp(*it) == false)
                                     {
                                         itMap->second.addChanOp(&(*it));                                
 										itMap->second.deleteClient(&(*it));
-                                        sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-										itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+										arg.append("o");
+										okay = true;
                                     }
-                                    return;
                                 }
                             }
                             else
                             {
                                 sendMsg(client, "442", client.getNick() + " " +  cmds[3] + " " + cmds[1], ERR_USERNOTINCHANNEL);
-                                return;
+								continue ;
                             }
                         }
-                        else if (cmds[2][i] == 'i' && cmds[2][i + 1] == 0)
+                        else if (cmds[2][i] == 'i')
                         {
                             if (sign == '-')
                             {
                                 if (itMap->second.getInvite() == true)
                                 {
                                     itMap->second.setInvite(false);
-                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+									arg.append("i");
+									okay = true;
                                 }
-                                return;
                             }
                             if (sign == '+')
                             {                                
                                 if (itMap->second.getInvite() == false)
                                 {
                                     itMap->second.setInvite(true);
-                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+									arg.append("i");
+									okay = true;
                                 }
-                                return;
                             }
                         }
-                        else if (cmds[2][i] == 't' && cmds[2][i + 1] == 0)
+                        else if (cmds[2][i] == 't')
                         {
                             if (sign == '-')
                             {
                                 if (itMap->second.getEnableTopic() == true)
                                 {
                                     itMap->second.enableTopic(false);
-                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+									arg.append("t");
+									okay = true;
                                 }
-                                return;
                             }
-                            if (sign == '+')
+                            else if (sign == '+')
                             {
                                 if (itMap->second.getEnableTopic() == false)
                                 {
                                     itMap->second.enableTopic(true);
-                                    sendConfirm(client , cmds[1] + " " + cmds[2] + " " + cmds[3], "");
-									itMap->second.sendConfirmChan(client, cmds[1] + " " + cmds[2] + " " + cmds[3], "");	
+									arg.append("t");
+									okay = true;
                                 }
-                                return;
                             }
                         }
-                        else if (cmds[2][i] == 'k' && cmds[2][i + 1] == 0)
+                        else if (cmds[2][i] == 'k')
                         {
                             if (sign == '-')
                             {
                                 if (cmds.size() == 4 && cmds[3] == itMap->second.getPassword())
                                 {
                                     itMap->second.setPassword("");
-                                    sendConfirm(client , cmds[0] + " " + cmds[1] + " " + cmds[2] + " *", "");
+									opt.assign("*");
+									arg.append("k");
+									okay = true;
                                 }
-                                return; 
                             }
-                            if (sign == '+')
+                            else if (sign == '+')
                             {
                                 if (cmds.size() == 4)
                                 {
                                     itMap->second.setPassword(cmds[3]);
-                                    sendConfirm(client , cmds[0]  + " " + cmds[1] + " " + cmds[2] + " " + cmds[3], "");
+									opt.assign(cmds[3]);
+									arg.append("k");
+									okay = true;
                                 }
-                                return;
                             }
                         }
-                        else if (error_nbr == 0 && cmds[2][i] != 'o' && cmds[2][i] != 'w' && cmds[2][i] != 'O' && cmds[2][i] != 'i' && cmds[2][i] != 's' && cmds[2][i] != 'r' && cmds[2][i] != 'a' && cmds[2][i] != 't')
-                        {
-                            sendMsg(client, "501", "", ERR_UMODEUNKNOWNFLAG);
-                            error_nbr++;
-                        }
                     }
+					if (okay)
+					{
+						for (size_t i = 0; i < arg.length(); i++)
+						{
+							if ((i + 1) != arg.length() && (arg[i + 1] == '-' || arg[i + 1] == '+'))
+								arg.erase(i, 1);
+						}
+						for (int i = arg.length() - 1; i != 0; i--)
+						{
+							if (arg[i] == '-' || arg[i] == '+')
+								arg.erase(i, 1);
+							else
+								break;
+						}
+						if (opt.empty())
+						{
+							sendConfirm(client , cmds[0] + " " + cmds[1] + " " + arg, "");
+							itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1] + " " + arg, "");	
+						}
+						else
+						{
+							sendConfirm(client , cmds[0]  + " " + cmds[1] + " " + arg + " " + opt, "");
+							itMap->second.sendConfirmChan(client, cmds[0] + " " + cmds[1] + " " + arg + " " + opt, "");	
+						}
+					}
                 }
                 else
                 {

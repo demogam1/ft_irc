@@ -126,6 +126,8 @@ ERRORS:
  mode #channel
  mode client
  -> mode ->mesage de reponse +i....
+ JOIN -> +i....
+
 
 mode #channel b -> ne doit pas envoyer Unknow command 
 mode error 472 pas utilise
