@@ -6,7 +6,7 @@
 #    By: misaev <misaev@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 14:07:04 by asebrech          #+#    #+#              #
-#    Updated: 2022/08/05 16:42:05 by misaev           ###   ########.fr        #
+#    Updated: 2022/08/06 13:18:58 by misaev           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =	srcs/main.cpp \
 		srcs/list.cpp \
 		srcs/kick.cpp \
 		srcs/whois.cpp \
+		srcs/who.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

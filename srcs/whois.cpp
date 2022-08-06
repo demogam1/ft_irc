@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:39:53 by misaev            #+#    #+#             */
-/*   Updated: 2022/08/05 21:48:32 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 15:00:04 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void Command::whois(std::vector<std::string> cmds, Client & client)
         sendMsg(client, "401", cmds[1], ERR_NOSUCHNICK);
         return;
     }
-    sendMsg(client, "311", it->getNick() + " ~" + client.getUser() + " " + client.getIP() + " *" , ":" + client.getRealname());
+    sendMsg(client, "311", it->getNick() + " ~" + it->getUser() + " " + it->getIP() + " *" , ":" + it->getRealname());
     sendMsg(client, "312", it->getNick() + " " + IP , ":Nice, FR");
     if (it->getAway().first)
     {
@@ -52,7 +52,7 @@ void Command::whois(std::vector<std::string> cmds, Client & client)
     }
     if (operChan.size() > 0)
         sendMsg(client, "319",it->getNick(), ":" + operChan);
-    sendMsg(client, "338", it->getNick() + " " + client.getIP(), ":actually using host");
+    sendMsg(client, "338", it->getNick() + " " + it->getIP(), ":actually using host");
     sendMsg(client, "317", it->getNick() + " " + std::to_string((int)result), ":seconds idle, signon time");
     sendMsg(client, "318", it->getNick(), RPL_ENDOFWHOIS);
     return;

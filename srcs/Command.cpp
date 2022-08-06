@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/05 16:39:09 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 12:42:05 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ Command::Command(std::string const & password, std::list<Client> & clients, std:
 	cmdMap[std::string("LIST")] = &Command::list;
 	cmdMap[std::string("KICK")] = &Command::kick;
 	cmdMap[std::string("WHOIS")] = &Command::whois;
+	cmdMap[std::string("WHO")] = &Command::who;
 }
 
 Command::~Command() {}

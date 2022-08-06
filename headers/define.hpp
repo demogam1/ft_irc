@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:52:06 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/05 21:30:38 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 13:15:50 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define RPL_NOWAWAY ":You have been marked as being away"
 # define RPL_NOTOPIC ":No topic is set"
 # define RPL_ENDOFWHOIS ":End of WHOIS list"
+# define RPL_ENDOFWHO ":End of WHO list"
 # define RPL_WHOISIDLE " :seconds idle"
 
 # define ERR_NOSUCHCHANNEL " :No such channel"
