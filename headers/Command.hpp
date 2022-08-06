@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:05:58 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/06 12:42:15 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 19:50:38 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ class	Command
 			void	whois(std::vector<std::string> cmds, Client & client);
 
 			void	who(std::vector<std::string> cmds, Client & client);
+
+			std::string	usedMods(std::string channel);
 
 	private :
 			std::string	password;

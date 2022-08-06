@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:30:18 by asebrech          #+#    #+#             */
-/*   Updated: 2022/07/30 12:34:12 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 18:40:33 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ class	Channel
 			bool	chanEmpty() const;
 
 			void	setPassword(std::string const & str);
-
+			bool 	isPassOn() const;
 			std::string const & getPassword(void) const;
 
 			std::string getTopicAuthor();
@@ -74,6 +74,7 @@ class	Channel
 			std::vector<Client *>	invited;
 			bool		invite;
 			bool		topicEnabled;
+			bool		isPassword;
 			std::string topicAuthor;
 			std::string	topic;
 			std::string	password;

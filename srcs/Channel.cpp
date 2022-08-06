@@ -6,13 +6,13 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:29:35 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 14:28:56 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 18:40:39 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/Channel.hpp"
 
-Channel::Channel() : invite(false),topicEnabled(false), topic(""), password("") {}
+Channel::Channel() : invite(false),topicEnabled(false),isPassword(false), topic(""), password("") {}
 
 Channel::~Channel() {}
 
@@ -148,8 +148,8 @@ void Channel::setTopic(std::string const & val, Client & client)
 	topicAuthor.assign(CLIENT + " " + std::to_string((int)result));
 }
 
-void Channel::setPassword(std::string const &str) { password = str; }
-
+void Channel::setPassword(std::string const &str) { password = str, isPassword = true; }
+bool Channel::isPassOn() const {return (isPassword); }
 std::string const & Channel::getPassword(void) const { return (password); }
 
 void  Channel::enableTopic(bool val) { topicEnabled = val; }

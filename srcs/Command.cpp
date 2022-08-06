@@ -6,7 +6,7 @@
 /*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:07:42 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/06 12:42:05 by misaev           ###   ########.fr       */
+/*   Updated: 2022/08/06 20:01:19 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,4 +250,24 @@ void	Command::welcomeMsg(Client & client)
 	{
 		sendMsg(client, "372", "", *it); 
 	}
+}
+
+std::string Command::usedMods(std::string channel)
+{
+	std::map<std::string, Channel>::iterator    itMap = chanMap.begin();    
+	std::string usedMod("+");
+	for(; itMap != chanMap.end(); itMap++)
+	{
+		if (itMap->first == channel)
+		{
+			if (itMap->second.getEnableTopic())
+				usedMod.append("t");                        
+			if (itMap->second.getInvite())
+				usedMod.append("i");                        
+			if (itMap->second.isPassOn())
+				usedMod.append("k");                        
+			break;
+		}
+	}
+	return usedMod;
 }

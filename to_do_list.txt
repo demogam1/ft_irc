@@ -122,11 +122,18 @@ respone --> :tata!~a@62.129.8.171 KICK #ref titi :titi
 ----------------
 ERRORS:
 
- mode #channel +i doit notifier tous le channel
+mode #channel +i doit notifier tous le channel
+====================
+mode #channel
+mode #client
+ajouter 
+afficher les modes utiliser dans les channels
+{
+    Join
 
- mode #channel
- mode client
- -> mode ->mesage de reponse +i....
+}
+======================
+-> mode ->mesage de reponse +i....
 
 mode #channel b -> ne doit pas envoyer Unknow command 
 mode error 472 pas utilise

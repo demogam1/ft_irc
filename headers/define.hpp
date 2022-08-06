@@ -26,7 +26,7 @@
 # define RPL_ENDOFWHO ":End of WHO list"
 # define RPL_WHOISIDLE " :seconds idle"
 
-# define ERR_NOSUCHCHANNEL " :No such channel"
+# define ERR_NOSUCHCHANNEL ":No such channel"
 # define ERR_NOTONCHANNEL " :You're not on that channel"
 # define ERR_USERONCHANNEL ":is already on channel"
 # define ERR_INVITEONLYCHAN " :Cannot join channel (+i)"
@@ -53,6 +53,7 @@
 # define ERR_USERNOTINCHANNEL ":They aren't on that channel"
 # define ERR_NOSUCHSERVER ":No such server"
 # define ERR_NOORIGIN ":No origin specified"
+# define ERR_UNKNOWNMODE " :is unknown mode char to me"
 
 
 # define RED	std::string("\e[31m")

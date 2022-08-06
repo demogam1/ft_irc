@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:13:55 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/06 12:52:55 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/06 20:05:35 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 				itMap->second.setPassword(*itKey);
 			client.getChannels().push_back(*it);
 			sendConfirm(client, cmds[0] + " " + *it, "");
+			sendMsg(client, "324", cmds[1], usedMods(cmds[1]));
 			Command::names(names, client);
 			itMap->second.sendConfirmChan(client, cmds[0] + " " + *it, "");
 		}
@@ -77,6 +78,7 @@ void	Command::join(std::vector<std::string> cmds, Client & client)
 					itMap->second.addClient(&client);
 					client.getChannels().push_back(*it);
 					sendConfirm(client, cmds[0] + " " + *it, "");
+					sendMsg(client, "324", cmds[1], usedMods(cmds[1]));
 					Command::names(names, client);
 					if (!itMap->second.getTopic().empty())
 					{
