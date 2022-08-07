@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mainBot.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:05:00 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 10:44:49 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/07 16:00:47 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		Bot	bot(port, av[2], av[3]);
-		autobot(bot);
-	}
-	else if (ac == 1)
-	{
-		Bot	bot;
 		autobot(bot);
 	}
 	else

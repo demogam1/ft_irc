@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebrech <asebrech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: misaev <misaev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:50:48 by asebrech          #+#    #+#             */
-/*   Updated: 2022/08/04 11:30:10 by asebrech         ###   ########.fr       */
+/*   Updated: 2022/08/07 16:00:33 by misaev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		Server	server(port, av[2]);
-		irc(server);
-	}
-	else if (ac == 1)
-	{
-		Server	server;
 		irc(server);
 	}
 	else
